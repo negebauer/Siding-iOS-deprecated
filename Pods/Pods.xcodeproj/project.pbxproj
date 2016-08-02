@@ -40,7 +40,7 @@
 		4E382C034BCED335D04C6F5EC080ED25 /* xmlstring.h in Headers */ = {isa = PBXBuildFile; fileRef = 7364C7F0B7AE28B3F37B06719933CB7B /* xmlstring.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4FD897B8C56614105B9F5B6E21D0D415 /* UITableView+ReuseIdentifierProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F310A3201A1A767A693458281D889EB /* UITableView+ReuseIdentifierProtocol.swift */; };
 		5079F9152E810C4F5EA900090CF9D066 /* DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58D8C6376F6053BE0BC54440607268B /* DataSource.swift */; };
-		5385DB3F64054433EDF87A52D7173899 /* UCSCourses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 565DF02E8A8D24AB60A72740990BACE9 /* UCSCourses.swift */; };
+		5385DB3F64054433EDF87A52D7173899 /* UCSiding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 565DF02E8A8D24AB60A72740990BACE9 /* UCSiding.swift */; };
 		5427CB57DD98D250558EF903DECD5870 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88CEDE53D99FC44A3B56A171D2896FBC /* Foundation.framework */; };
 		55F9FBC65B032F0CBEB48157A3BFD594 /* KeychainAccess-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 60679821C53E81D0344279FB01D8D6A9 /* KeychainAccess-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		56554E445D9C6D5EE35F5C04617830AD /* UCSQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = F763741C0E13ADD44AB6E8AA72218EAF /* UCSQueue.swift */; };
@@ -247,7 +247,7 @@
 		5045E9A975CF25A2A920B4D0867E8C71 /* KeychainAccess-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "KeychainAccess-prefix.pch"; sourceTree = "<group>"; };
 		51FF58F8BEC1AAEFE096BF0E307EF43F /* FileResource.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FileResource.swift; path = Library/Core/FileResource.swift; sourceTree = "<group>"; };
 		55E6369FF02C2A874B2C471E0D50EBEE /* NetworkReachabilityManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NetworkReachabilityManager.swift; path = Source/NetworkReachabilityManager.swift; sourceTree = "<group>"; };
-		565DF02E8A8D24AB60A72740990BACE9 /* UCSCourses.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = UCSCourses.swift; sourceTree = "<group>"; };
+		565DF02E8A8D24AB60A72740990BACE9 /* UCSiding.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = UCSiding.swift; sourceTree = "<group>"; };
 		569FB2DDEE4F0FA96965154C939BD0F5 /* Kanna.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = Kanna.modulemap; sourceTree = "<group>"; };
 		5C17F4AE31A090BD71BCD0BEBA682B56 /* UIViewController+StoryboardSegueIdentifierProtocol.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIViewController+StoryboardSegueIdentifierProtocol.swift"; path = "Library/UIKit/UIViewController+StoryboardSegueIdentifierProtocol.swift"; sourceTree = "<group>"; };
 		5CA0DE2EF1C914A7519C495827D4E489 /* KeychainAccess.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = KeychainAccess.modulemap; sourceTree = "<group>"; };
@@ -830,7 +830,7 @@
 			children = (
 				C3C48F27B4AD779EDCED495A39D0A022 /* UCSConstant.swift */,
 				898A2A63768973FB70A37C6489CC8276 /* UCSCourse.swift */,
-				565DF02E8A8D24AB60A72740990BACE9 /* UCSCourses.swift */,
+				565DF02E8A8D24AB60A72740990BACE9 /* UCSiding.swift */,
 				F3EE609DE1CACD42BB808B46CD92F032 /* UCSFile.swift */,
 				F763741C0E13ADD44AB6E8AA72218EAF /* UCSQueue.swift */,
 				A4660C3CE5EF75DDBD8D81FA5028D785 /* UCSSession.swift */,
@@ -1123,7 +1123,7 @@
 			files = (
 				D331ABD127A71228B3B543CF442D3364 /* UCSConstant.swift in Sources */,
 				83CF7A96CD5538F4D4A568FB4D9BAF24 /* UCSCourse.swift in Sources */,
-				5385DB3F64054433EDF87A52D7173899 /* UCSCourses.swift in Sources */,
+				5385DB3F64054433EDF87A52D7173899 /* UCSiding.swift in Sources */,
 				5F159CDE0B7DBDDDDC4EDDCA1D1C89B6 /* UCSFile.swift in Sources */,
 				D5E577E1DEA76DD05028FD1EC64A668D /* UCSiding-dummy.m in Sources */,
 				56554E445D9C6D5EE35F5C04617830AD /* UCSQueue.swift in Sources */,

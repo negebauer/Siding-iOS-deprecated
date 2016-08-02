@@ -31,13 +31,35 @@ struct R {
     private init() {}
   }
   
-  /// This `R.reuseIdentifier` struct is generated, and contains static references to 0 reuse identifiers.
+  /// This `R.reuseIdentifier` struct is generated, and contains static references to 3 reuse identifiers.
   struct reuseIdentifier {
+    /// Reuse identifier `CourseCell`.
+    static let courseCell: ReuseIdentifier<CourseCell> = ReuseIdentifier(identifier: "CourseCell")
+    /// Reuse identifier `CourseDataCell`.
+    static let courseDataCell: ReuseIdentifier<UITableViewCell> = ReuseIdentifier(identifier: "CourseDataCell")
+    /// Reuse identifier `CourseFolderCell`.
+    static let courseFolderCell: ReuseIdentifier<UITableViewCell> = ReuseIdentifier(identifier: "CourseFolderCell")
+    
     private init() {}
   }
   
-  /// This `R.segue` struct is generated, and contains static references to 0 view controllers.
+  /// This `R.segue` struct is generated, and contains static references to 1 view controllers.
   struct segue {
+    /// This struct is generated for `SidingViewController`, and contains static references to 1 segues.
+    struct sidingViewController {
+      /// Segue identifier `ShowCourse`.
+      static let showCourse: StoryboardSegueIdentifier<UIStoryboardSegue, SidingViewController, CourseViewController> = StoryboardSegueIdentifier(identifier: "ShowCourse")
+      
+      /// Optionally returns a typed version of segue `ShowCourse`.
+      /// Returns nil if either the segue identifier, the source, destination, or segue types don't match.
+      /// For use inside `prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)`.
+      static func showCourse(segue segue: UIStoryboardSegue) -> TypedStoryboardSegueInfo<UIStoryboardSegue, SidingViewController, CourseViewController>? {
+        return TypedStoryboardSegueInfo(segueIdentifier: R.segue.sidingViewController.showCourse, segue: segue)
+      }
+      
+      private init() {}
+    }
+    
     private init() {}
   }
   
@@ -82,7 +104,7 @@ struct _R {
     }
     
     struct main: StoryboardResourceWithInitialControllerType {
-      typealias InitialController = ViewController
+      typealias InitialController = UINavigationController
       
       let bundle = _R.hostingBundle
       let name = "Main"
