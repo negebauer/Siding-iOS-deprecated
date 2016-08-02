@@ -7,9 +7,9 @@ target 'Siding' do
     pod 'Fabric'
     pod 'Crashlytics'
 
-    # pod 'Alamofire', '~> 3.3.0'
     pod 'KeychainAccess', '~> 2.3.5'
     pod 'R.swift', '~> 2.1.0'
+    pod 'UCSiding', path: '../UCSiding'
 
     # UI
     pod 'Static', git: 'https://github.com/venmo/Static'
