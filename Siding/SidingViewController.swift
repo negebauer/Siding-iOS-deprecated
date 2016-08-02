@@ -8,6 +8,7 @@
 
 import UIKit
 import UCSiding
+import GoogleMobileAds
 
 class SidingViewController: UIViewController {
     
@@ -21,6 +22,7 @@ class SidingViewController: UIViewController {
     // MARK: - Outlets
     
     @IBOutlet weak var sidingTable: UITableView!
+    @IBOutlet weak var adBanner: GADBannerView!
     
     // MARK: - Init
     
@@ -29,6 +31,15 @@ class SidingViewController: UIViewController {
         sidingTable.delegate = self
         sidingTable.dataSource = self
         login(false)
+        
+        // Google ad banner
+        adBanner.adUnitID = "ca-app-pub-8882180510797099/5756826366"
+        adBanner.rootViewController = self
+        let request = GADRequest()
+        #if DEBUG
+            request.testDevices = [ kGADSimulatorID ]
+        #endif
+        adBanner.loadRequest(request)
     }
     
     override func viewDidAppear(animated: Bool) {
