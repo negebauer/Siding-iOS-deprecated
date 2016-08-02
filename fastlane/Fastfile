@@ -1,0 +1,25 @@
+fastlane_version "1.91.0"
+
+default_platform :ios
+
+# import_from_git(url: "https://github.com/negebauer/Resources.git", path: 'Fastfile')
+import "../../../Resources/fastlane/Fastfile"
+
+# Set app specific data in here
+# You may override global data also
+def setappdata
+    # --- REQUIRED
+    $app_name = 'Siding'
+    $app_name_folder = "Siding"
+    app_name = $app_name
+    $app_icon = "Resources/siding-iTunes-Artwork.png"
+
+    # --- Optional
+    # ENV["SLACK_URL"] = "https://hooks.slack.com/services/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"
+    # $slack_channel = "wifiuc"    # Format --- public_channel: #channel, username: @user, private_channel: group
+    # $appetizetoken = "tok_httkabj29qvy7tamee5ab55dpm"
+end
+
+platform :ios do
+
+end
