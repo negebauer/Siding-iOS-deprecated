@@ -6,7 +6,12 @@ target 'Siding' do
     # Fabric
     pod 'Fabric'
     pod 'Crashlytics'
+    
+    # Google ads
+    pod 'Firebase/Core'
+    pod 'Firebase/AdMob'
 
+    # Backend
     pod 'KeychainAccess', '~> 2.3.5'
     pod 'R.swift', '~> 2.1.0'
     pod 'UCSiding', path: '../UCSiding'
