@@ -1,0 +1,6 @@
+framework module Pods_Siding {
+  umbrella header "Pods-Siding-umbrella.h"
+
+  export *
+  module * { export * }
+}
