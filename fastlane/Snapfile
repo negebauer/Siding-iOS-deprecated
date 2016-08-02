@@ -1,0 +1,23 @@
+devices([
+"iPhone 6s",
+"iPhone 6s Plus",
+"iPhone 5s",
+"iPhone 4s",
+"iPad Retina",
+"iPad Pro"
+])
+
+languages([
+"en-US"
+])
+
+scheme "Screenshots"
+workspace "./Siding.xcworkspace"
+
+configuration "Release"
+
+clean true
+
+clear_previous_screenshots true
+# erase_simulator true
+reinstall_app true

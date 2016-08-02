@@ -7,7 +7,7 @@
       buildImplicitDependencies = "YES">
       <BuildActionEntries>
          <BuildActionEntry
-            buildForTesting = "YES"
+            buildForTesting = "NO"
             buildForRunning = "YES"
             buildForProfiling = "YES"
             buildForArchiving = "YES"
@@ -17,6 +17,20 @@
                BlueprintIdentifier = "03844B921D5040FD00099154"
                BuildableName = "Siding.app"
                BlueprintName = "Siding"
+               ReferencedContainer = "container:Siding.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "NO"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "03F5ED641D50493F0026D1CE"
+               BuildableName = "Screenshots.xctest"
+               BlueprintName = "Screenshots"
                ReferencedContainer = "container:Siding.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -61,8 +75,7 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "03844B921D5040FD00099154"
@@ -70,7 +83,7 @@
             BlueprintName = "Siding"
             ReferencedContainer = "container:Siding.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -80,8 +93,7 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "03844B921D5040FD00099154"
@@ -89,7 +101,7 @@
             BlueprintName = "Siding"
             ReferencedContainer = "container:Siding.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

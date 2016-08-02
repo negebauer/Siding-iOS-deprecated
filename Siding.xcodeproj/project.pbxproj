@@ -7,15 +7,28 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0324E3001D504A090041080A /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0324E2FF1D504A090041080A /* SnapshotHelper.swift */; };
 		03844B971D5040FD00099154 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03844B961D5040FD00099154 /* AppDelegate.swift */; };
 		03844B991D5040FD00099154 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03844B981D5040FD00099154 /* ViewController.swift */; };
 		03844B9C1D5040FD00099154 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 03844B9A1D5040FD00099154 /* Main.storyboard */; };
 		03844B9E1D5040FD00099154 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 03844B9D1D5040FD00099154 /* Assets.xcassets */; };
 		03844BA11D5040FD00099154 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 03844B9F1D5040FD00099154 /* LaunchScreen.storyboard */; };
+		03F5ED681D50493F0026D1CE /* Screenshots.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F5ED671D50493F0026D1CE /* Screenshots.swift */; };
 		9310A7A08D0AE16BC728EC52 /* Pods_Siding.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4428642185060B0A573408B /* Pods_Siding.framework */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		03F5ED6A1D50493F0026D1CE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 03844B8B1D5040FD00099154 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 03844B921D5040FD00099154;
+			remoteInfo = Siding;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		0324E2FF1D504A090041080A /* SnapshotHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SnapshotHelper.swift; path = ../fastlane/SnapshotHelper.swift; sourceTree = "<group>"; };
 		03844B931D5040FD00099154 /* Siding.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Siding.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		03844B961D5040FD00099154 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		03844B981D5040FD00099154 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -23,6 +36,9 @@
 		03844B9D1D5040FD00099154 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		03844BA01D5040FD00099154 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		03844BA21D5040FD00099154 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		03F5ED651D50493F0026D1CE /* Screenshots.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Screenshots.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		03F5ED671D50493F0026D1CE /* Screenshots.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Screenshots.swift; sourceTree = "<group>"; };
+		03F5ED691D50493F0026D1CE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4AABFDB2CC116DE0E8FAD0DA /* Pods-Siding.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Siding.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Siding/Pods-Siding.debug.xcconfig"; sourceTree = "<group>"; };
 		6EE6B53244A5C07910FFE102 /* Pods-Siding.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Siding.release.xcconfig"; path = "Pods/Target Support Files/Pods-Siding/Pods-Siding.release.xcconfig"; sourceTree = "<group>"; };
 		F4428642185060B0A573408B /* Pods_Siding.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Siding.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -37,6 +53,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		03F5ED621D50493F0026D1CE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -44,6 +67,7 @@
 			isa = PBXGroup;
 			children = (
 				03844B951D5040FD00099154 /* Siding */,
+				03F5ED661D50493F0026D1CE /* Screenshots */,
 				03844B941D5040FD00099154 /* Products */,
 				0E0547C92B133E4DC7808099 /* Pods */,
 				059F5FD7CDD107F37A8B2A69 /* Frameworks */,
@@ -54,6 +78,7 @@
 			isa = PBXGroup;
 			children = (
 				03844B931D5040FD00099154 /* Siding.app */,
+				03F5ED651D50493F0026D1CE /* Screenshots.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -69,6 +94,16 @@
 				03844BA21D5040FD00099154 /* Info.plist */,
 			);
 			path = Siding;
+			sourceTree = "<group>";
+		};
+		03F5ED661D50493F0026D1CE /* Screenshots */ = {
+			isa = PBXGroup;
+			children = (
+				0324E2FF1D504A090041080A /* SnapshotHelper.swift */,
+				03F5ED671D50493F0026D1CE /* Screenshots.swift */,
+				03F5ED691D50493F0026D1CE /* Info.plist */,
+			);
+			path = Screenshots;
 			sourceTree = "<group>";
 		};
 		059F5FD7CDD107F37A8B2A69 /* Frameworks */ = {
@@ -114,6 +149,24 @@
 			productReference = 03844B931D5040FD00099154 /* Siding.app */;
 			productType = "com.apple.product-type.application";
 		};
+		03F5ED641D50493F0026D1CE /* Screenshots */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 03F5ED6E1D50493F0026D1CE /* Build configuration list for PBXNativeTarget "Screenshots" */;
+			buildPhases = (
+				03F5ED611D50493F0026D1CE /* Sources */,
+				03F5ED621D50493F0026D1CE /* Frameworks */,
+				03F5ED631D50493F0026D1CE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				03F5ED6B1D50493F0026D1CE /* PBXTargetDependency */,
+			);
+			name = Screenshots;
+			productName = Screenshots;
+			productReference = 03F5ED651D50493F0026D1CE /* Screenshots.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -126,6 +179,10 @@
 				TargetAttributes = {
 					03844B921D5040FD00099154 = {
 						CreatedOnToolsVersion = 7.3.1;
+					};
+					03F5ED641D50493F0026D1CE = {
+						CreatedOnToolsVersion = 7.3.1;
+						TestTargetID = 03844B921D5040FD00099154;
 					};
 				};
 			};
@@ -143,6 +200,7 @@
 			projectRoot = "";
 			targets = (
 				03844B921D5040FD00099154 /* Siding */,
+				03F5ED641D50493F0026D1CE /* Screenshots */,
 			);
 		};
 /* End PBXProject section */
@@ -155,6 +213,13 @@
 				03844BA11D5040FD00099154 /* LaunchScreen.storyboard in Resources */,
 				03844B9E1D5040FD00099154 /* Assets.xcassets in Resources */,
 				03844B9C1D5040FD00099154 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		03F5ED631D50493F0026D1CE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -260,7 +325,24 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		03F5ED611D50493F0026D1CE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				03F5ED681D50493F0026D1CE /* Screenshots.swift in Sources */,
+				0324E3001D504A090041080A /* SnapshotHelper.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		03F5ED6B1D50493F0026D1CE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 03844B921D5040FD00099154 /* Siding */;
+			targetProxy = 03F5ED6A1D50493F0026D1CE /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		03844B9A1D5040FD00099154 /* Main.storyboard */ = {
@@ -393,6 +475,29 @@
 			};
 			name = Release;
 		};
+		03F5ED6C1D50493F0026D1CE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				INFOPLIST_FILE = Screenshots/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.negebauer.Screenshots;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = Siding;
+			};
+			name = Debug;
+		};
+		03F5ED6D1D50493F0026D1CE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = Screenshots/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.negebauer.Screenshots;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = Siding;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -410,6 +515,15 @@
 			buildConfigurations = (
 				03844BA61D5040FD00099154 /* Debug */,
 				03844BA71D5040FD00099154 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		03F5ED6E1D50493F0026D1CE /* Build configuration list for PBXNativeTarget "Screenshots" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				03F5ED6C1D50493F0026D1CE /* Debug */,
+				03F5ED6D1D50493F0026D1CE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

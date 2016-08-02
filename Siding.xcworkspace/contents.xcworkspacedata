@@ -11,6 +11,9 @@
       location = "group:Resources">
    </FileRef>
    <FileRef
+      location = "group:fastlane">
+   </FileRef>
+   <FileRef
       location = "group:CHANGELOG.md">
    </FileRef>
    <FileRef

@@ -1,0 +1,3 @@
+scheme "Siding"
+provisioning_profile_path "AppStore_com.negebauer.Siding.mobileprovision"
+clean true
