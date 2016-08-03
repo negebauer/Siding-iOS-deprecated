@@ -108,6 +108,7 @@
                         <outlet property="adBanner" destination="y4v-eU-WSW" id="yqm-lh-pUD"/>
                         <outlet property="sidingTable" destination="Ar7-VD-d4J" id="SzS-JV-IFp"/>
                         <segue destination="KaJ-W4-tXk" kind="show" identifier="ShowCourse" id="Jye-3T-pyz"/>
+                        <segue destination="HPZ-eL-mNc" kind="show" identifier="ShowAppInfo" id="Owt-Kz-jqI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -222,6 +223,31 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WJB-ma-PwF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="141" y="-556"/>
+        </scene>
+        <!--Wifi UC-->
+        <scene sceneID="1Lm-Gx-6VS">
+            <objects>
+                <tableViewController id="HPZ-eL-mNc" customClass="InfoTableViewController" customModule="Wifi_UC" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="rPb-W7-4sO">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <sections/>
+                        <connections>
+                            <outlet property="dataSource" destination="HPZ-eL-mNc" id="pGn-4f-IFD"/>
+                            <outlet property="delegate" destination="HPZ-eL-mNc" id="c3B-wD-pZV"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Wifi UC" id="wwm-hN-oVs">
+                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="EUx-ZB-92E"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="barButton" destination="EUx-ZB-92E" id="oaL-xl-QCQ"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wlk-Cv-dCU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="827" y="142"/>
         </scene>
     </scenes>
 </document>

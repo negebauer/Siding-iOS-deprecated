@@ -70,7 +70,7 @@ class SidingViewController: UIViewController {
     }
     
     @IBAction func nameTap(sender: AnyObject) {
-        print("❤️")
+        performSegueWithIdentifier(R.segue.sidingViewController.showAppInfo, sender: nil)
     }
     
     // MARK: - Functions
