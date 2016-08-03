@@ -17,7 +17,8 @@ class SidingViewController: UIViewController {
     // MARK: - Variables
     
     var model: SidingViewModel?
-    var loading = false
+    var isLogin = false
+    var loginCooldown: NSTimer?
     
     // MARK: - Outlets
     
@@ -49,12 +50,16 @@ class SidingViewController: UIViewController {
     // MARK: - Actions
     
     @IBAction func logout(sender: AnyObject) {
+        toastLoadingFinished()
+        isLogin = false
         Settings.instance.deleteData()
         login(true, reload: true)
     }
     
     @IBAction func reload(sender: AnyObject) {
-        guard Settings.instance.isUserSet() else { return }
+        guard !isLogin && loginCooldown == nil else { return }
+        loginCooldown = NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: #selector(loginCooldownCompleted), userInfo: nil, repeats: false)
+        guard Settings.instance.isUserSet() else { return configureCredentials(true) }
         login(true, reload: true)
     }
     
@@ -64,42 +69,39 @@ class SidingViewController: UIViewController {
     
     // MARK: - Functions
     
-    func loadingFinished() {
-        loading = false
-        toastLoadingFinished()
-    }
-    
-    func loadingStarted() {
-        loading = true
-        toastLoading()
+    func loginCooldownCompleted() {
+        loginCooldown?.invalidate()
+        loginCooldown = nil
     }
     
     func login(viewAppeared: Bool, reload: Bool = false) {
+        guard !isLogin else { return }
+        let cancelLogin = { self.isLogin = false }
+        isLogin = true
+        toastLoadingFinished()
         if reload {
-            loadingFinished()
             model = nil
             sidingTable.reloadData()
         }
-        guard !loading else { return }
         guard Settings.instance.isUserSet() else {
             if viewAppeared { configureCredentials(viewAppeared) }
-            return
+            return cancelLogin()
         }
-        guard model == nil else { return }
+        guard model == nil else { return cancelLogin() }
         model = SidingViewModel(username: Settings.instance.username, password: Settings.instance.password)
         model!.delegate = self
-        loadingStarted()
         model!.login()
+        toastLoading()
     }
     
-    func configureCredentials(viewAppeared: Bool) {
+    func configureCredentials(viewAppeared: Bool, reload: Bool = false) {
         let alert = UIAlertController(title: "Credenciales uc 🔑", message: "", preferredStyle: .Alert)
-        alert.addAction(AlertAction.cancelAction())
+        // alert.addAction(AlertAction.cancelAction())
         alert.addAction(AlertAction.alertAction("Log in") {
             let username = alert.textFields?[0].text ?? ""
             let password = alert.textFields?[1].text ?? ""
             Settings.instance.configure(username, password: password)
-                self.login(viewAppeared)
+                self.login(viewAppeared, reload: reload)
             })
         alert.addTextFieldWithConfigurationHandler() {
             $0.placeholder = "Usuario sin @uc"
@@ -113,10 +115,11 @@ class SidingViewController: UIViewController {
         presentViewController(alert, animated: true, completion: nil)
     }
     
-    func showErrorAlert(title: String = "Error", message: String, retry: (() -> Void)? = nil) {
+    func showErrorAlert(title: String = "Error", message: String, retry: (() -> Void)? = nil, ok: (() -> Void)? = nil) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
-        alert.addAction(AlertAction.okAction())
+        alert.addAction(AlertAction.okAction({ _ in ok?() }))
         alert.addAction(AlertAction.retryAction(retry))
+        presentViewController(alert, animated: true, completion: nil)
     }
     
     // MARK: - Navigation
@@ -132,12 +135,14 @@ class SidingViewController: UIViewController {
 extension SidingViewController: SidingViewModelDelegate {
     
     func loadedSiding(model: SidingViewModel, result: LoginResult) {
-        loadingFinished()
+        toastLoadingFinished()
+        isLogin = false
         switch result {
         case .Success:
             model.loadSiding()
         case .Error(let reason):
-            showErrorAlert("Error login", message: reason, retry: { self.login(true, reload: true) })
+            showErrorAlert("Error login", message: reason, retry: { self.login(true, reload: true) },
+                           ok: { self.configureCredentials(true, reload: true) })
         }
     }
     
