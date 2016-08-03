@@ -13,7 +13,7 @@ enum LoginResult {
     case Error(description: String)
 }
 
-protocol SidingViewModelDelegate {
+protocol SidingViewModelDelegate: class {
     func loadedSiding(model: SidingViewModel, result: LoginResult)
     func updateSidingTable()
 }
@@ -27,7 +27,7 @@ class SidingViewModel {
     
     // MARK: - Variables
     
-    internal var delegate: SidingViewModelDelegate?
+    internal weak var delegate: SidingViewModelDelegate?
     var _courses: [Course] = []
     var courses: [Course] { return _courses }
     
@@ -46,7 +46,7 @@ class SidingViewModel {
             self.delegate?.loadedSiding(self, result: .Success)
             }, failure: { error in
                 let error = error != nil ? "\n\n\(error!.localizedDescription)" : ""
-                let description = "No se pudo iniciar sesion\(error)"
+                let description = "No se pudo iniciar sesión\nRevisa que ingresaste correctamente tus datos e inténtalo de nuevo\(error)"
                 self.delegate?.loadedSiding(self, result: .Error(description: description))
         })
     }

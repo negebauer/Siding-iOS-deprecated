@@ -8,7 +8,7 @@
 
 import UCSiding
 
-protocol CourseViewModelDelegate {
+protocol CourseViewModelDelegate: class {
     func updateTable()
 }
 
