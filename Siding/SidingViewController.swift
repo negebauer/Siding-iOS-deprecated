@@ -12,6 +12,12 @@ import GoogleMobileAds
 
 class SidingViewController: UIViewController {
     
+    enum TableSection: Int {
+        case Courses = 0
+        
+        static func numberOfSections() -> Int { return 1 }
+    }
+    
     // MARK: - Constants
 
     // MARK: - Variables
@@ -169,15 +175,25 @@ extension SidingViewController: UITableViewDelegate {
 // MARK: - UITableViewDataSource conform
 extension SidingViewController: UITableViewDataSource {
     
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return TableSection.numberOfSections()
+    }
+    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard let model = model else { return 0 }
-        return model.courses.count
+        guard let model = model, let section = TableSection(rawValue: section) else { return 0 }
+        switch section {
+        case .Courses:
+            return model.courses.count
+        }
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        guard let model = model else { return UITableViewCell() }
-        let cell = tableView.dequeueReusableCellWithIdentifier(R.reuseIdentifier.courseCell.identifier) as! CourseCell
-        cell.config(model.courses[indexPath.row])
-        return cell
+        guard let model = model, let section = TableSection(rawValue: indexPath.section) else { return UITableViewCell() }
+        switch section {
+        case .Courses:
+            let cell = tableView.dequeueReusableCellWithIdentifier(R.reuseIdentifier.courseCell.identifier) as! CourseCell
+            cell.config(model.courses[indexPath.row])
+            return cell
+        }
     }
 }

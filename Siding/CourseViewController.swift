@@ -83,18 +83,17 @@ extension CourseViewController: UITableViewDelegate {
 extension CourseViewController: UITableViewDataSource {
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 2
+        return TableSection.numberOfSections()
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard let model = model, let section = TableSection(rawValue: section) else { return 0 }
         switch section {
         case .CourseData:
-            break
+            return 0
         case .CourseFolder:
-            break
+            return 0
         }
-        return 0
 //        return model.courses.count
     }
     
@@ -102,13 +101,12 @@ extension CourseViewController: UITableViewDataSource {
         guard let model = model, let section = TableSection(rawValue: indexPath.section) else { return UITableViewCell() }
         switch section {
         case .CourseData:
-            break
+            return UITableViewCell()
         case .CourseFolder:
-            break
+            return UITableViewCell()
         }
 //        let cell = tableView.dequeueReusableCellWithIdentifier(R.reuseIdentifier.courseCell.identifier) as! CourseCell
 //        cell.config(model.courses[indexPath.row])
 //        return cell
-        return UITableViewCell()
     }
 }
