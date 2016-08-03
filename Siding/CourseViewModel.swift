@@ -45,7 +45,13 @@ class CourseViewModel {
 extension CourseViewModel: UCSCourseDelegate {
     
     func foundFile(course: UCSCourse, file: UCSFile) {
-        // TODO: Move hierarchy to library
+        // TODO: Move hierarchy to library?
+        /*
+         Maybe use a dictionary [path: folder] to finde parents by checking if the path is contained in file.path
+         Then on addChild do the same check to see if parent is a folder child
+         
+         Or on UCSiding expose method to scrap one page at a time. First the main one with all the folders and then just the content of the a given page (the middle part)
+         */
         
         print(file.path + " - " + file.name)
         if file.name == "t1_respuesta1.pdf" {
