@@ -224,10 +224,10 @@
             </objects>
             <point key="canvasLocation" x="141" y="-556"/>
         </scene>
-        <!--Wifi UC-->
+        <!--Siding-->
         <scene sceneID="1Lm-Gx-6VS">
             <objects>
-                <tableViewController id="HPZ-eL-mNc" customClass="InfoTableViewController" customModule="Wifi_UC" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="HPZ-eL-mNc" customClass="InfoTableViewController" customModule="Siding" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="rPb-W7-4sO">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -238,7 +238,7 @@
                             <outlet property="delegate" destination="HPZ-eL-mNc" id="c3B-wD-pZV"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Wifi UC" id="wwm-hN-oVs">
+                    <navigationItem key="navigationItem" title="Siding" id="wwm-hN-oVs">
                         <barButtonItem key="rightBarButtonItem" systemItem="action" id="EUx-ZB-92E"/>
                     </navigationItem>
                     <connections>

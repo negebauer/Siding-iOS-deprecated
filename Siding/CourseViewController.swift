@@ -34,6 +34,7 @@ class CourseViewController: UIViewController {
         courseTable.delegate = self
         courseTable.dataSource = self
         model?.load()
+        toastLoading()
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -53,8 +54,11 @@ class CourseViewController: UIViewController {
 // MARK: - CourseViewModelDelegate conform
 extension CourseViewController: CourseViewModelDelegate {
     
-    func updateTable() {
-        mainQueue({ self.courseTable.reloadData() })
+    func loadedFiles() {
+        mainQueue({
+            self.toastLoadingFinished()
+            self.courseTable.reloadData()
+        })
     }
 }
 
