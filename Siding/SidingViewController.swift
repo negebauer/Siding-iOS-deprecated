@@ -153,7 +153,7 @@ extension SidingViewController: SidingViewModelDelegate {
     }
     
     func updateSidingTable() {
-        sidingTable.reloadData()
+        mainQueue({ self.sidingTable.reloadData() })
     }
 }
 
