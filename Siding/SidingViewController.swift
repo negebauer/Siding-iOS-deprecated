@@ -37,6 +37,7 @@ class SidingViewController: UIViewController {
         super.viewDidLoad()
         sidingTable.delegate = self
         sidingTable.dataSource = self
+        sidingTable.tableFooterView = UIView()
         login(false)
         
         // Google ad banner
