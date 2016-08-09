@@ -16,6 +16,30 @@ class CourseViewController: UIViewController {
         static func numberOfSections() -> Int { return 2 }
     }
     
+    enum CourseDataRow: Int {
+        case News = 0, Program = 1, Calendar = 2, Forms = 3, Students = 4, Grades = 5, Forum = 6
+        
+        static func numberOfRows() -> Int { return 6 }
+        func name() -> String {
+            switch self {
+            case .News:
+                return "Avisos"
+            case .Program:
+                return "Programa"
+            case .Calendar:
+                return "Calendario"
+            case .Forms:
+                return "Cuestionarios"
+            case .Students:
+                return "Alumnos"
+            case .Grades:
+                return "Notas"
+            case .Forum:
+                return "Foro"
+            }
+        }
+    }
+    
     // MARK: - Constants
 
     // MARK: - Variables
@@ -30,9 +54,10 @@ class CourseViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.title = model?.course.name
+        navigationItem.title = model?.course.name ?? "ERROR_COURSE_NAME"
         courseTable.delegate = self
         courseTable.dataSource = self
+        courseTable.tableFooterView = UIView()
         model?.load()
         toastLoading()
     }
@@ -66,19 +91,31 @@ extension CourseViewController: CourseViewModelDelegate {
 extension CourseViewController: UITableViewDelegate {
     
 //    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-//        return 0
+//        return 10
 //    }
     
+    func tableView(tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        // TODO: Add alpha to color
+        let color = UIColor.grayColor()
+        view.tintColor = color
+    }
+ 
     func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 0
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 60
+        guard let section = TableSection(rawValue: indexPath.section) else { return 0 }
+        switch section {
+        case .CourseData:
+            return 45
+        case .CourseFolder:
+            return 60
+        }
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-//        sidingTable.deselectRowAtIndexPath(indexPath, animated: true)
+        courseTable.deselectRowAtIndexPath(indexPath, animated: true)
 //        guard let model = model else { return }
 //        let course = model.courses[indexPath.row]
 //        performSegueWithIdentifier(R.segue.sidingViewController.showCourse, sender: course)
@@ -96,7 +133,7 @@ extension CourseViewController: UITableViewDataSource {
         guard let model = model, let section = TableSection(rawValue: section) else { return 0 }
         switch section {
         case .CourseData:
-            return 0
+            return CourseDataRow.numberOfRows()
         case .CourseFolder:
             return model.files.count
         }
@@ -107,10 +144,14 @@ extension CourseViewController: UITableViewDataSource {
         guard let model = model, let section = TableSection(rawValue: indexPath.section) else { return UITableViewCell() }
         switch section {
         case .CourseData:
-            return UITableViewCell()
+            guard let dataRow = CourseDataRow(rawValue: indexPath.row) else { return UITableViewCell() }
+            let cell = tableView.dequeueReusableCellWithIdentifier(R.reuseIdentifier.courseDataCell.identifier) as! CourseDataCell
+            cell.configure(dataRow)
+            return cell
         case .CourseFolder:
-            let cell = UITableViewCell(style: .Default, reuseIdentifier: "")
-            cell.textLabel?.text = model.files[indexPath.row].name
+            let file = model.files[indexPath.row]
+            let cell = tableView.dequeueReusableCellWithIdentifier(R.reuseIdentifier.courseFileCell.identifier) as! CourseDataCell
+            cell.configure(file)
             return cell
         }
 //        let cell = tableView.dequeueReusableCellWithIdentifier(R.reuseIdentifier.courseCell.identifier) as! CourseCell
@@ -126,6 +167,9 @@ extension CourseViewController: UITableViewDataSource {
         case .CourseFolder:
             return "Archivos del curso"
         }
-        
     }
+    
+//    func tableView(tableView: UITableView, titleForFooterInSection section: Int) -> String? {
+//        return "asd"
+//    }
 }

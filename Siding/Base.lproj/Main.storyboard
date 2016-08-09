@@ -29,20 +29,22 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="59.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SIGLA Nombre ramo" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CSB-SP-Fgw">
-                                                    <rect key="frame" x="16" y="15" width="160" height="20.5"/>
-                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="IIC2233 Programacion avanzada" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BPP-5N-qUr">
+                                                    <rect key="frame" x="16" y="35" width="167.5" height="16.5"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="11"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="IIC2233 Programacion avanzada" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BPP-5N-qUr">
-                                                    <rect key="frame" x="16" y="36" width="167.5" height="13.5"/>
-                                                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="11"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SIGLA Nombre ramo" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CSB-SP-Fgw">
+                                                    <rect key="frame" x="16" y="16" width="143.5" height="18"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="CSB-SP-Fgw" secondAttribute="trailing" constant="8" id="6aJ-9R-fu9"/>
+                                                <constraint firstItem="BPP-5N-qUr" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Sdk-zR-YqI" secondAttribute="bottomMargin" id="Eth-R4-dE9"/>
                                                 <constraint firstItem="CSB-SP-Fgw" firstAttribute="centerY" secondItem="Sdk-zR-YqI" secondAttribute="centerY" constant="-5" id="Nn2-yg-FKq"/>
                                                 <constraint firstItem="BPP-5N-qUr" firstAttribute="top" secondItem="CSB-SP-Fgw" secondAttribute="bottom" constant="1" id="noR-yC-YY9"/>
                                                 <constraint firstItem="CSB-SP-Fgw" firstAttribute="leading" secondItem="Sdk-zR-YqI" secondAttribute="leadingMargin" constant="8" id="oIg-Ai-abq"/>
@@ -136,16 +138,16 @@
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CourseDataCell" rowHeight="60" id="TbT-FF-qLl">
-                                        <rect key="frame" x="0.0" y="92" width="600" height="60"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CourseDataCell" rowHeight="45" id="TbT-FF-qLl" customClass="CourseDataCell" customModule="Siding">
+                                        <rect key="frame" x="0.0" y="92" width="600" height="45"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="TbT-FF-qLl" id="913-25-2RZ">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="59.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="44.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nombre dato" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FKx-vh-xwT">
-                                                    <rect key="frame" x="16" y="19" width="102.5" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                                                    <rect key="frame" x="16" y="13.5" width="92" height="18"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -153,36 +155,45 @@
                                             <constraints>
                                                 <constraint firstItem="FKx-vh-xwT" firstAttribute="leading" secondItem="913-25-2RZ" secondAttribute="leadingMargin" constant="8" id="6BN-iA-i22"/>
                                                 <constraint firstItem="FKx-vh-xwT" firstAttribute="centerY" secondItem="913-25-2RZ" secondAttribute="centerY" id="AvH-t3-6Te"/>
+                                                <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="FKx-vh-xwT" secondAttribute="trailing" constant="8" id="r3c-nD-gDv"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="dataLabel" destination="FKx-vh-xwT" id="f2d-B4-S0S"/>
+                                        </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CourseFolderCell" rowHeight="60" id="5bv-t6-fDM">
-                                        <rect key="frame" x="0.0" y="152" width="600" height="60"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CourseFileCell" rowHeight="60" id="5bv-t6-fDM" customClass="CourseDataCell" customModule="Siding">
+                                        <rect key="frame" x="0.0" y="137" width="600" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="5bv-t6-fDM" id="bqD-ab-LGn">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="59.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nombre carpeta" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i0V-V5-7hR">
-                                                    <rect key="frame" x="16" y="14.5" width="127.5" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Carpeta" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lmA-iC-u6c">
+                                                    <rect key="frame" x="16" y="35" width="41.5" height="14"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="11"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Carpeta" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lmA-iC-u6c">
-                                                    <rect key="frame" x="16" y="36" width="41.5" height="14"/>
-                                                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="11"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nombre carpeta" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i0V-V5-7hR">
+                                                    <rect key="frame" x="16" y="16" width="114" height="18"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="i0V-V5-7hR" firstAttribute="centerY" secondItem="bqD-ab-LGn" secondAttribute="centerY" constant="-5" id="3pR-ah-XXM"/>
+                                                <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="i0V-V5-7hR" secondAttribute="trailing" constant="8" id="7xe-9e-4VM"/>
                                                 <constraint firstItem="lmA-iC-u6c" firstAttribute="leading" secondItem="i0V-V5-7hR" secondAttribute="leading" id="9gm-2u-FrJ"/>
                                                 <constraint firstItem="lmA-iC-u6c" firstAttribute="top" secondItem="i0V-V5-7hR" secondAttribute="bottom" constant="1" id="QOF-Tu-Vyh"/>
                                                 <constraint firstItem="i0V-V5-7hR" firstAttribute="leading" secondItem="bqD-ab-LGn" secondAttribute="leadingMargin" constant="8" id="lJI-Db-Ep7"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="fileNameLabel" destination="i0V-V5-7hR" id="YlH-0e-LIZ"/>
+                                            <outlet property="fileTypeLabel" destination="lmA-iC-u6c" id="VdL-L5-Lu6"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>

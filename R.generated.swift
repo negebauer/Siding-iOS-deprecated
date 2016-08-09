@@ -36,9 +36,9 @@ struct R {
     /// Reuse identifier `CourseCell`.
     static let courseCell: ReuseIdentifier<CourseCell> = ReuseIdentifier(identifier: "CourseCell")
     /// Reuse identifier `CourseDataCell`.
-    static let courseDataCell: ReuseIdentifier<UITableViewCell> = ReuseIdentifier(identifier: "CourseDataCell")
-    /// Reuse identifier `CourseFolderCell`.
-    static let courseFolderCell: ReuseIdentifier<UITableViewCell> = ReuseIdentifier(identifier: "CourseFolderCell")
+    static let courseDataCell: ReuseIdentifier<CourseDataCell> = ReuseIdentifier(identifier: "CourseDataCell")
+    /// Reuse identifier `CourseFileCell`.
+    static let courseFileCell: ReuseIdentifier<CourseDataCell> = ReuseIdentifier(identifier: "CourseFileCell")
     
     private init() {}
   }
