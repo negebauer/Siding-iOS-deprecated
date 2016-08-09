@@ -58,7 +58,7 @@ class InfoTableViewController: UITableViewController {
         //        SubtitleCell — Plain UITableViewCell with the .Subtitle style.
         //        ButtonCell — Plain UITableViewCell with the .Default style. The textLabel's textColor is set to the cell's tintColor
         
-        // TODO: Update data
+        // TODO: Update static data
         dataSource = DataSource(tableView: tableView, sections: [
             Section(header: "Legal", rows: [
                 Row(text: "Aplicación no oficial de la PUC"),
