@@ -1,35 +1,38 @@
 //
-//  CourseViewModel.swift
+//  CourseFolderViewModel.swift
 //  Siding
 //
-//  Created by Nicolás Gebauer on 02-08-16.
+//  Created by Nicolás Gebauer on 09-08-16.
 //  Copyright © 2016 Nicolás Gebauer. All rights reserved.
 //
 
 import UCSiding
 
-protocol CourseViewModelDelegate: class {
+protocol CourseFolderViewModelDelegate: class {
     func loadedFiles()
+    func downloadedFile()
 }
 
-class CourseViewModel {
+class CourseFolderViewModel {
     
     // MARK: - Constants
 
+    let file: File
     let session: UCSSession
     private let _course: Course
     
     // MARK: - Variables
     
-    weak var delegate: CourseViewModelDelegate?
+    weak var delegate: CourseFolderViewModelDelegate?
     var course: Course { return _course }
     private var _files: [File] = []
     var files: [File] { return _files }
     
     // MARK: - Init
     
-    init(course: Course, session: UCSSession) {
-        _course = course
+    init(course: Course, file: File, session: UCSSession) {
+        self._course = course
+        self.file = file
         self.session = session
         course.delegate = self
     }
@@ -37,27 +40,16 @@ class CourseViewModel {
     // MARK: - Functions
 
     func load() {
-        course.loadFiles()
+        course.loadFolderFiles(file)
     }
     
-    func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        guard let id = segue.identifier else { return }
-        switch id {
-        case R.segue.courseViewController.showCourseFolder.identifier:
-            guard let file = sender as? File, folderView = segue.destinationViewController as? CourseFolderViewController else {
-                return
-            }
-            let model = CourseFolderViewModel(course: course, file: file, session: session)
-            folderView.configureFromSegue(model)
-        default:
-            break
-        }
+    func download(file: File) {
+        // TODO: Download the file
     }
 }
 
-
 // MARK: - UCSCourseDelegate conform
-extension CourseViewModel: UCSCourseDelegate {
+extension CourseFolderViewModel: UCSCourseDelegate {
     
     func foundFile(course: UCSCourse, file: UCSFile) {
         // Don't do anything. We want to have all files

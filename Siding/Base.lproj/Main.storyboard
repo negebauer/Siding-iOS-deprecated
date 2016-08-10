@@ -109,7 +109,7 @@
                     <connections>
                         <outlet property="adBanner" destination="y4v-eU-WSW" id="yqm-lh-pUD"/>
                         <outlet property="sidingTable" destination="Ar7-VD-d4J" id="SzS-JV-IFp"/>
-                        <segue destination="KaJ-W4-tXk" kind="show" identifier="ShowCourse" id="Jye-3T-pyz"/>
+                        <segue destination="KaJ-W4-tXk" kind="show" identifier="showCourse" id="Jye-3T-pyz"/>
                         <segue destination="HPZ-eL-mNc" kind="show" identifier="ShowAppInfo" id="Owt-Kz-jqI"/>
                     </connections>
                 </viewController>
@@ -220,11 +220,81 @@
                     </navigationItem>
                     <connections>
                         <outlet property="courseTable" destination="a85-Pt-Dba" id="Jp0-n0-v5M"/>
+                        <segue destination="IH8-gq-Mry" kind="show" identifier="showCourseFolder" id="gdb-aW-ghk"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uV7-UO-rsT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1515" y="-556"/>
+        </scene>
+        <!--Course Folder-->
+        <scene sceneID="Dwa-me-992">
+            <objects>
+                <viewController storyboardIdentifier="courseFolderDetail" id="IH8-gq-Mry" customClass="CourseFolderViewController" customModule="Siding" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="zdg-1q-pDB"/>
+                        <viewControllerLayoutGuide type="bottom" id="74J-kb-QEf"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="aPF-Zq-iMR">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="zOK-aD-cZc">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CourseFileCell" rowHeight="60" id="90v-zx-HoB" customClass="CourseDataCell" customModule="Siding">
+                                        <rect key="frame" x="0.0" y="92" width="600" height="60"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="90v-zx-HoB" id="jSs-Hm-Gcq">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="59.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Carpeta" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TQZ-Dz-B3P">
+                                                    <rect key="frame" x="16" y="35" width="41.5" height="14"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="11"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nombre carpeta" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tsU-Y1-aG2">
+                                                    <rect key="frame" x="16" y="16" width="114" height="18"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="tsU-Y1-aG2" secondAttribute="trailing" constant="8" id="4Z8-sN-Le1"/>
+                                                <constraint firstItem="TQZ-Dz-B3P" firstAttribute="leading" secondItem="tsU-Y1-aG2" secondAttribute="leading" id="TTY-eB-Ci3"/>
+                                                <constraint firstItem="tsU-Y1-aG2" firstAttribute="leading" secondItem="jSs-Hm-Gcq" secondAttribute="leadingMargin" constant="8" id="dhn-TK-KAr"/>
+                                                <constraint firstItem="tsU-Y1-aG2" firstAttribute="centerY" secondItem="jSs-Hm-Gcq" secondAttribute="centerY" constant="-5" id="mKX-eg-Urb"/>
+                                                <constraint firstItem="TQZ-Dz-B3P" firstAttribute="top" secondItem="tsU-Y1-aG2" secondAttribute="bottom" constant="1" id="w2b-6e-t9m"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="fileNameLabel" destination="tsU-Y1-aG2" id="l84-Io-XmU"/>
+                                            <outlet property="fileTypeLabel" destination="TQZ-Dz-B3P" id="Xx9-ft-1oT"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="zOK-aD-cZc" secondAttribute="trailing" constant="-20" id="48t-YJ-Z2f"/>
+                            <constraint firstItem="zOK-aD-cZc" firstAttribute="top" secondItem="aPF-Zq-iMR" secondAttribute="topMargin" id="6Ij-Rr-M5g"/>
+                            <constraint firstItem="zOK-aD-cZc" firstAttribute="leading" secondItem="aPF-Zq-iMR" secondAttribute="leadingMargin" constant="-20" id="HU2-kV-Nnc"/>
+                            <constraint firstItem="74J-kb-QEf" firstAttribute="top" secondItem="zOK-aD-cZc" secondAttribute="bottom" id="kdw-Db-kFZ"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Course Folder" id="2zf-Ie-b92"/>
+                    <connections>
+                        <outlet property="folderTable" destination="zOK-aD-cZc" id="3f7-CQ-ASA"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8Jb-CP-fvQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2209" y="-556"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="V53-ac-yCF">

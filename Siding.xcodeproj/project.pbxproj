@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		030AD0AF1D5069CF0064BE76 /* CourseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 030AD0AE1D5069CF0064BE76 /* CourseViewController.swift */; };
 		030AD0B11D5069DB0064BE76 /* CourseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 030AD0B01D5069DB0064BE76 /* CourseViewModel.swift */; };
+		031284B11D5AC9EF0067FE52 /* CourseFolderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031284B01D5AC9EF0067FE52 /* CourseFolderViewController.swift */; };
+		031284B31D5ACA120067FE52 /* CourseFolderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031284B21D5ACA120067FE52 /* CourseFolderViewModel.swift */; };
 		0324E3001D504A090041080A /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0324E2FF1D504A090041080A /* SnapshotHelper.swift */; };
 		0351696A1D5807A900259D81 /* CourseDataCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 035169691D5807A900259D81 /* CourseDataCell.swift */; };
 		0378C9281D519FAF0057E1BB /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0378C9271D519FAF0057E1BB /* File.swift */; };
@@ -44,6 +46,8 @@
 /* Begin PBXFileReference section */
 		030AD0AE1D5069CF0064BE76 /* CourseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseViewController.swift; sourceTree = "<group>"; };
 		030AD0B01D5069DB0064BE76 /* CourseViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseViewModel.swift; sourceTree = "<group>"; };
+		031284B01D5AC9EF0067FE52 /* CourseFolderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseFolderViewController.swift; sourceTree = "<group>"; };
+		031284B21D5ACA120067FE52 /* CourseFolderViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseFolderViewModel.swift; sourceTree = "<group>"; };
 		0324E2FF1D504A090041080A /* SnapshotHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SnapshotHelper.swift; path = ../fastlane/SnapshotHelper.swift; sourceTree = "<group>"; };
 		035169691D5807A900259D81 /* CourseDataCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseDataCell.swift; sourceTree = "<group>"; };
 		0378C9271D519FAF0057E1BB /* File.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
@@ -122,6 +126,8 @@
 				030AD0AE1D5069CF0064BE76 /* CourseViewController.swift */,
 				030AD0B01D5069DB0064BE76 /* CourseViewModel.swift */,
 				035169691D5807A900259D81 /* CourseDataCell.swift */,
+				031284B01D5AC9EF0067FE52 /* CourseFolderViewController.swift */,
+				031284B21D5ACA120067FE52 /* CourseFolderViewModel.swift */,
 				0378C9271D519FAF0057E1BB /* File.swift */,
 				0378C92D1D51A9A70057E1BB /* InfoTableViewController.swift */,
 				03844B9A1D5040FD00099154 /* Main.storyboard */,
@@ -374,7 +380,9 @@
 				03D2967B1D504E9A0040E784 /* AlertAction.swift in Sources */,
 				030AD0AF1D5069CF0064BE76 /* CourseViewController.swift in Sources */,
 				039B89A11D50628600E9810A /* R.generated.swift in Sources */,
+				031284B31D5ACA120067FE52 /* CourseFolderViewModel.swift in Sources */,
 				030AD0B11D5069DB0064BE76 /* CourseViewModel.swift in Sources */,
+				031284B11D5AC9EF0067FE52 /* CourseFolderViewController.swift in Sources */,
 				0378C92E1D51A9A70057E1BB /* InfoTableViewController.swift in Sources */,
 				0378C9281D519FAF0057E1BB /* File.swift in Sources */,
 				03844B971D5040FD00099154 /* AppDelegate.swift in Sources */,

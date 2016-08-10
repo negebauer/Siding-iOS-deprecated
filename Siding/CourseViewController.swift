@@ -74,6 +74,13 @@ class CourseViewController: UIViewController {
         model = courseModel
         model?.delegate = self
     }
+    
+    // MARK: - Navigation
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        guard let model = model else { return }
+        model.prepareForSegue(segue, sender: sender)
+    }
 }
 
 // MARK: - CourseViewModelDelegate conform
@@ -116,9 +123,9 @@ extension CourseViewController: UITableViewDelegate {
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         courseTable.deselectRowAtIndexPath(indexPath, animated: true)
-//        guard let model = model else { return }
-//        let course = model.courses[indexPath.row]
-//        performSegueWithIdentifier(R.segue.sidingViewController.showCourse, sender: course)
+        guard let model = model else { return }
+        let file = model.files[indexPath.row]
+        performSegueWithIdentifier(R.segue.courseViewController.showCourseFolder, sender: file)
     }
 }
 
@@ -154,9 +161,6 @@ extension CourseViewController: UITableViewDataSource {
             cell.configure(file)
             return cell
         }
-//        let cell = tableView.dequeueReusableCellWithIdentifier(R.reuseIdentifier.courseCell.identifier) as! CourseCell
-//        cell.config(model.courses[indexPath.row])
-//        return cell
     }
     
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -168,8 +172,4 @@ extension CourseViewController: UITableViewDataSource {
             return "Archivos del curso"
         }
     }
-    
-//    func tableView(tableView: UITableView, titleForFooterInSection section: Int) -> String? {
-//        return "asd"
-//    }
 }

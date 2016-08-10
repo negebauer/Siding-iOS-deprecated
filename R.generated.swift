@@ -6,7 +6,11 @@ import Rswift
 import UIKit
 
 /// This `R` struct is code generateted, and contains references to static resources.
-struct R {
+struct R: Rswift.Validatable {
+  static func validate() throws {
+    try intern.validate()
+  }
+  
   struct color {
     private init() {}
   }
@@ -23,6 +27,14 @@ struct R {
   
   /// This `R.image` struct is generated, and contains static references to 0 images.
   struct image {
+    private init() {}
+  }
+  
+  private struct intern: Rswift.Validatable {
+    static func validate() throws {
+      try _R.validate()
+    }
+    
     private init() {}
   }
   
@@ -43,14 +55,29 @@ struct R {
     private init() {}
   }
   
-  /// This `R.segue` struct is generated, and contains static references to 1 view controllers.
+  /// This `R.segue` struct is generated, and contains static references to 2 view controllers.
   struct segue {
+    /// This struct is generated for `CourseViewController`, and contains static references to 1 segues.
+    struct courseViewController {
+      /// Segue identifier `showCourseFolder`.
+      static let showCourseFolder: StoryboardSegueIdentifier<UIStoryboardSegue, CourseViewController, CourseFolderViewController> = StoryboardSegueIdentifier(identifier: "showCourseFolder")
+      
+      /// Optionally returns a typed version of segue `showCourseFolder`.
+      /// Returns nil if either the segue identifier, the source, destination, or segue types don't match.
+      /// For use inside `prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)`.
+      static func showCourseFolder(segue segue: UIStoryboardSegue) -> TypedStoryboardSegueInfo<UIStoryboardSegue, CourseViewController, CourseFolderViewController>? {
+        return TypedStoryboardSegueInfo(segueIdentifier: R.segue.courseViewController.showCourseFolder, segue: segue)
+      }
+      
+      private init() {}
+    }
+    
     /// This struct is generated for `SidingViewController`, and contains static references to 2 segues.
     struct sidingViewController {
       /// Segue identifier `ShowAppInfo`.
       static let showAppInfo: StoryboardSegueIdentifier<UIStoryboardSegue, SidingViewController, InfoTableViewController> = StoryboardSegueIdentifier(identifier: "ShowAppInfo")
-      /// Segue identifier `ShowCourse`.
-      static let showCourse: StoryboardSegueIdentifier<UIStoryboardSegue, SidingViewController, CourseViewController> = StoryboardSegueIdentifier(identifier: "ShowCourse")
+      /// Segue identifier `showCourse`.
+      static let showCourse: StoryboardSegueIdentifier<UIStoryboardSegue, SidingViewController, CourseViewController> = StoryboardSegueIdentifier(identifier: "showCourse")
       
       /// Optionally returns a typed version of segue `ShowAppInfo`.
       /// Returns nil if either the segue identifier, the source, destination, or segue types don't match.
@@ -59,7 +86,7 @@ struct R {
         return TypedStoryboardSegueInfo(segueIdentifier: R.segue.sidingViewController.showAppInfo, segue: segue)
       }
       
-      /// Optionally returns a typed version of segue `ShowCourse`.
+      /// Optionally returns a typed version of segue `showCourse`.
       /// Returns nil if either the segue identifier, the source, destination, or segue types don't match.
       /// For use inside `prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)`.
       static func showCourse(segue segue: UIStoryboardSegue) -> TypedStoryboardSegueInfo<UIStoryboardSegue, SidingViewController, CourseViewController>? {
@@ -95,14 +122,22 @@ struct R {
   private init() {}
 }
 
-struct _R {
+struct _R: Rswift.Validatable {
   static let hostingBundle = NSBundle(identifier: "com.negebauer.Siding") ?? NSBundle.mainBundle()
+  
+  static func validate() throws {
+    try storyboard.validate()
+  }
   
   struct nib {
     private init() {}
   }
   
-  struct storyboard {
+  struct storyboard: Rswift.Validatable {
+    static func validate() throws {
+      try main.validate()
+    }
+    
     struct launchScreen: StoryboardResourceWithInitialControllerType {
       typealias InitialController = UIViewController
       
@@ -112,11 +147,20 @@ struct _R {
       private init() {}
     }
     
-    struct main: StoryboardResourceWithInitialControllerType {
+    struct main: StoryboardResourceWithInitialControllerType, Rswift.Validatable {
       typealias InitialController = UINavigationController
       
       let bundle = _R.hostingBundle
+      let courseFolderDetail = StoryboardViewControllerResource<CourseFolderViewController>(identifier: "courseFolderDetail")
       let name = "Main"
+      
+      func courseFolderDetail(_: Void) -> CourseFolderViewController? {
+        return UIStoryboard(resource: self).instantiateViewController(courseFolderDetail)
+      }
+      
+      static func validate() throws {
+        if _R.storyboard.main().courseFolderDetail() == nil { throw ValidationError(description:"[R.swift] ViewController with identifier 'courseFolderDetail' could not be loaded from storyboard 'Main' as 'CourseFolderViewController'.") }
+      }
       
       private init() {}
     }
