@@ -10,7 +10,7 @@ import UCSiding
 
 protocol CourseFolderViewModelDelegate: class {
     func loadedFiles()
-    func downloadedFile()
+    func downloadedFile(fileURL: NSURL) // TODO: Save file data to device
 }
 
 class CourseFolderViewModel {
@@ -45,6 +45,7 @@ class CourseFolderViewModel {
     
     func download(file: File) {
         // TODO: Download the file
+        // TODO: See if file was recently downloaded?
     }
 }
 

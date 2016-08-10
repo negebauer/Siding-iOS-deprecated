@@ -15,6 +15,7 @@ class CourseFolderViewController: UIViewController {
     // MARK: - Variables
     
     var model: CourseFolderViewModel?
+    var fileOpenCell: CourseDataCell?
     
     // MARK: - Outlets
     
@@ -63,8 +64,11 @@ extension CourseFolderViewController: CourseFolderViewModelDelegate {
         })
     }
     
-    func downloadedFile() {
+    func downloadedFile(fileURL: NSURL) {
         // TODO: Show
+        guard let cell = fileOpenCell else { return }
+        let fileViewController = UIDocumentInteractionController(URL: fileURL)
+        fileViewController.presentOptionsMenuFromRect(cell.frame, inView: view, animated: true)
     }
 }
 
@@ -89,6 +93,8 @@ extension CourseFolderViewController: UITableViewDelegate {
             vc.model = CourseFolderViewModel(course: model.course, file: file, session: model.session)
             navigationController?.pushViewController(vc, animated: true)
         } else if file.isFile() {
+            guard let cell = folderTable.cellForRowAtIndexPath(indexPath) as? CourseDataCell else { return }
+            fileOpenCell = cell
             model.download(file)
         }
     }
