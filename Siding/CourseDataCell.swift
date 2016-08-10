@@ -21,6 +21,7 @@ class CourseDataCell: UITableViewCell {
     @IBOutlet weak var dataLabel: UILabel!
     @IBOutlet weak var fileNameLabel: UILabel!
     @IBOutlet weak var fileTypeLabel: UILabel!
+    @IBOutlet weak var comingSoonLabel: UILabel!
     
     // MARK: - Init
 
@@ -40,6 +41,7 @@ class CourseDataCell: UITableViewCell {
     
     func configure(data: CourseViewController.CourseDataRow) {
         dataLabel.text = data.name()
+        comingSoonLabel.hidden = false
     }
     
     // MARK: - Navigation

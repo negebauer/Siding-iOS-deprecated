@@ -151,14 +151,23 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pronto..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kcG-qA-bsK">
+                                                    <rect key="frame" x="540" y="14.5" width="52" height="16"/>
+                                                    <fontDescription key="fontDescription" type="italicSystem" pointSize="13"/>
+                                                    <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="kcG-qA-bsK" firstAttribute="trailing" secondItem="913-25-2RZ" secondAttribute="trailingMargin" id="065-Pp-jlI"/>
                                                 <constraint firstItem="FKx-vh-xwT" firstAttribute="leading" secondItem="913-25-2RZ" secondAttribute="leadingMargin" constant="8" id="6BN-iA-i22"/>
                                                 <constraint firstItem="FKx-vh-xwT" firstAttribute="centerY" secondItem="913-25-2RZ" secondAttribute="centerY" id="AvH-t3-6Te"/>
+                                                <constraint firstItem="kcG-qA-bsK" firstAttribute="centerY" secondItem="FKx-vh-xwT" secondAttribute="centerY" id="CSl-tK-ey8"/>
                                                 <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="FKx-vh-xwT" secondAttribute="trailing" constant="8" id="r3c-nD-gDv"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="comingSoonLabel" destination="kcG-qA-bsK" id="wID-ge-cvn"/>
                                             <outlet property="dataLabel" destination="FKx-vh-xwT" id="f2d-B4-S0S"/>
                                         </connections>
                                     </tableViewCell>
