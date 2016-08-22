@@ -28,7 +28,9 @@ class CourseFolderViewController: UIViewController {
         folderTable.delegate = self
         folderTable.dataSource = self
         folderTable.tableFooterView = UIView()
-        model?.load()
+        guard let model = model else { return }
+        navigationItem.title = model.folder.name
+        model.load()
         toastLoading()
     }
     
@@ -90,7 +92,8 @@ extension CourseFolderViewController: UITableViewDelegate {
         
         if file.isFolder() {
             guard let vc = storyboard?.instantiateViewController(R.storyboard.main.courseFolderDetail) else { return }
-            vc.model = CourseFolderViewModel(course: model.course, folder: file, session: model.session)
+            let model = CourseFolderViewModel(course: model.course, folder: file, session: model.session)
+            vc.configureFromSegue(model)
             navigationController?.pushViewController(vc, animated: true)
         } else if file.isFile() {
             guard let cell = folderTable.cellForRowAtIndexPath(indexPath) as? CourseDataCell else { return }

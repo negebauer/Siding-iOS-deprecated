@@ -27,6 +27,7 @@ class CourseFolderViewModel {
     var course: Course { return _course }
     private var _files: [UCSFile] = []
     var files: [UCSFile] { return _files }
+    var hasLoadedFiles = false
     
     // MARK: - Init
     
@@ -62,7 +63,8 @@ extension CourseFolderViewModel: UCSCourseDelegate {
     }
     
     func foundFolderFiles(course: UCSCourse, folder: UCSFile, files: [UCSFile]) {
-        _files += files
+        _files = files
+        hasLoadedFiles = true
         delegate?.loadedFiles()
     }
 }

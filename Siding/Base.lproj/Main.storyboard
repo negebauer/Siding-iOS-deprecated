@@ -215,9 +215,7 @@
                             <constraint firstAttribute="trailingMargin" secondItem="a85-Pt-Dba" secondAttribute="trailing" constant="-20" id="rW8-8j-FXG"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Course" id="0l9-kh-eo6">
-                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="Ht5-1P-iP5"/>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Course" id="0l9-kh-eo6"/>
                     <connections>
                         <outlet property="courseTable" destination="a85-Pt-Dba" id="Jp0-n0-v5M"/>
                         <segue destination="IH8-gq-Mry" kind="show" identifier="showCourseFolder" id="gdb-aW-ghk"/>

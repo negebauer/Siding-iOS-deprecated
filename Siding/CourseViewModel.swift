@@ -25,6 +25,7 @@ class CourseViewModel {
     var course: Course { return _course }
     private var _files: [UCSFile] = []
     var files: [UCSFile] { return _files }
+    var hasLoadedFiles = false
     
     // MARK: - Init
     
@@ -38,6 +39,7 @@ class CourseViewModel {
     // MARK: - Functions
 
     func load() {
+        guard !hasLoadedFiles else { return }
         course.loadMainFiles()
     }
     
@@ -65,7 +67,8 @@ extension CourseViewModel: UCSCourseDelegate {
     }
     
     func foundMainFiles(course: UCSCourse, files: [UCSFile]) {
-        _files += files
+        _files = files
+        hasLoadedFiles = true
         delegate?.loadedFiles()
     }
     

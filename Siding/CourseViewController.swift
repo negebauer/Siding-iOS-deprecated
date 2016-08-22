@@ -54,11 +54,12 @@ class CourseViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.title = model?.course.name ?? "ERROR_COURSE_NAME"
         courseTable.delegate = self
         courseTable.dataSource = self
         courseTable.tableFooterView = UIView()
-        model?.load()
+        guard let model = model else { return }
+        navigationItem.title = model.course.name
+        model.load()
         toastLoading()
     }
     
