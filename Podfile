@@ -18,5 +18,5 @@ target 'Siding' do
 
     # UI
     pod 'Static', git: 'https://github.com/venmo/Static'
-    pod 'Toast-Swift', '~> 1.3.0'
+    pod 'MBProgressHUD', '~> 1.0.0'
 end
