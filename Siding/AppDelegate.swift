@@ -21,7 +21,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         #if RELEASE
             Fabric.with([Crashlytics.self])
         #endif
-        Toast.configure()
         return true
     }
 

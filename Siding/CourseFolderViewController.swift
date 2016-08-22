@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import MBProgressHUD
 
-class CourseFolderViewController: UIViewController {
+class CourseFolderViewController: UIViewController, ProgressHUDContainer {
     
     // MARK: - Constants
 
@@ -16,6 +17,7 @@ class CourseFolderViewController: UIViewController {
     
     var model: CourseFolderViewModel?
     var fileOpenCell: CourseDataCell?
+    var hud: MBProgressHUD?
     
     // MARK: - Outlets
     
@@ -31,7 +33,7 @@ class CourseFolderViewController: UIViewController {
         guard let model = model else { return }
         navigationItem.title = model.folder.name
         model.load()
-        toastLoading()
+        showLoadingHUD("Cargando archivos")
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -61,16 +63,22 @@ extension CourseFolderViewController: CourseFolderViewModelDelegate {
     
     func loadedFiles() {
         mainQueue({
-            self.toastLoadingFinished()
+            self.dismissLoadingHUD()
             self.folderTable.reloadData()
         })
     }
     
     func downloadedFile(fileURL: NSURL) {
-        // TODO: Show
+        dismissLoadingHUD()
         guard let cell = fileOpenCell else { return }
-        let fileViewController = UIDocumentInteractionController(URL: fileURL)
-        fileViewController.presentOptionsMenuFromRect(cell.frame, inView: view, animated: true)
+         let fileViewController = UIDocumentInteractionController(URL: fileURL)
+         fileViewController.presentOptionsMenuFromRect(cell.frame, inView: view, animated: true)
+    }
+    
+    func downloadFileProgress(progress: Float) {
+        mainQueue({
+            self.hud?.progress = progress
+        })
     }
 }
 
@@ -98,6 +106,7 @@ extension CourseFolderViewController: UITableViewDelegate {
         } else if file.isFile() {
             guard let cell = folderTable.cellForRowAtIndexPath(indexPath) as? CourseDataCell else { return }
             fileOpenCell = cell
+            showProgressLoadingHUD("Descargando", progress: 0)
             model.download(file)
         }
     }

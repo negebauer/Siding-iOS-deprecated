@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import MBProgressHUD
 
-class CourseViewController: UIViewController {
+class CourseViewController: UIViewController, ProgressHUDContainer {
     
     enum TableSection: Int {
         case CourseData = 0, CourseFolder = 1
@@ -45,6 +46,7 @@ class CourseViewController: UIViewController {
     // MARK: - Variables
     
     var model: CourseViewModel?
+    var hud: MBProgressHUD?
     
     // MARK: - Outlets
     
@@ -60,7 +62,7 @@ class CourseViewController: UIViewController {
         guard let model = model else { return }
         navigationItem.title = model.course.name
         model.load()
-        toastLoading()
+        showLoadingHUD("Cargando curso")
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -89,7 +91,7 @@ extension CourseViewController: CourseViewModelDelegate {
     
     func loadedFiles() {
         mainQueue({
-            self.toastLoadingFinished()
+            self.dismissLoadingHUD()
             self.courseTable.reloadData()
         })
     }

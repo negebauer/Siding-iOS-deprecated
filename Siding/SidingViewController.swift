@@ -9,8 +9,9 @@
 import UIKit
 import UCSiding
 import GoogleMobileAds
+import MBProgressHUD
 
-class SidingViewController: UIViewController {
+class SidingViewController: UIViewController, ProgressHUDContainer {
     
     enum TableSection: Int {
         case Courses = 0
@@ -25,6 +26,7 @@ class SidingViewController: UIViewController {
     var model: SidingViewModel?
     var isLogin = false
     var loginCooldown: NSTimer?
+    var hud: MBProgressHUD?
     
     // MARK: - Outlets
     
@@ -57,7 +59,7 @@ class SidingViewController: UIViewController {
     // MARK: - Actions
     
     @IBAction func logout(sender: AnyObject) {
-        toastLoadingFinished()
+        dismissLoadingHUD()
         isLogin = false
         Settings.instance.deleteData()
         login(true, reload: true)
@@ -85,7 +87,7 @@ class SidingViewController: UIViewController {
         guard !isLogin else { return }
         let cancelLogin = { self.isLogin = false }
         isLogin = true
-        toastLoadingFinished()
+        dismissLoadingHUD()
         if reload {
             model = nil
             sidingTable.reloadData()
@@ -95,10 +97,10 @@ class SidingViewController: UIViewController {
             return cancelLogin()
         }
         guard model == nil else { return cancelLogin() }
+        showLoadingHUD("Ingresando")
         model = SidingViewModel(username: Settings.instance.username, password: Settings.instance.password)
         model!.delegate = self
         model!.login()
-        toastLoading()
     }
     
     func configureCredentials(viewAppeared: Bool, reload: Bool = false) {
@@ -142,7 +144,7 @@ class SidingViewController: UIViewController {
 extension SidingViewController: SidingViewModelDelegate {
     
     func loadedSiding(model: SidingViewModel, result: LoginResult) {
-        toastLoadingFinished()
+        dismissLoadingHUD()
         isLogin = false
         switch result {
         case .Success:

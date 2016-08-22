@@ -10,7 +10,8 @@ import UCSiding
 
 protocol CourseFolderViewModelDelegate: class {
     func loadedFiles()
-    func downloadedFile(fileURL: NSURL) // TODO: Save file data to device
+    func downloadFileProgress(progress: Float)
+    func downloadedFile(fileURL: NSURL)
 }
 
 class CourseFolderViewModel {
@@ -46,8 +47,7 @@ class CourseFolderViewModel {
     }
     
     func download(file: UCSFile) {
-        // TODO: Download the file
-        // TODO: See if file was recently downloaded?
+        file.download(session.headers(), delegate: self)
     }
 }
 
@@ -66,5 +66,18 @@ extension CourseFolderViewModel: UCSCourseDelegate {
         _files = files
         hasLoadedFiles = true
         delegate?.loadedFiles()
+    }
+}
+
+// MARK: - UCSFileDelegate comply
+extension CourseFolderViewModel: UCSFileDelegate {
+    
+    func downloadProgress(progress: Float) {
+        delegate?.downloadFileProgress(progress)
+    }
+    
+    func downloadFinished(path: String) {
+        guard let url = NSURL(string: path) where NSFileManager.defaultManager().fileExistsAtPath(path) else { return }
+        delegate?.downloadedFile(url)
     }
 }
