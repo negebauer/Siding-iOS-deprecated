@@ -23,8 +23,8 @@ class CourseViewModel {
     
     weak var delegate: CourseViewModelDelegate?
     var course: Course { return _course }
-    private var _files: [File] = []
-    var files: [File] { return _files }
+    private var _files: [UCSFile] = []
+    var files: [UCSFile] { return _files }
     
     // MARK: - Init
     
@@ -32,22 +32,23 @@ class CourseViewModel {
         _course = course
         self.session = session
         course.delegate = self
+        _files = course.mainFiles
     }
     
     // MARK: - Functions
 
     func load() {
-        course.loadFiles()
+        course.loadMainFiles()
     }
     
     func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         guard let id = segue.identifier else { return }
         switch id {
         case R.segue.courseViewController.showCourseFolder.identifier:
-            guard let file = sender as? File, folderView = segue.destinationViewController as? CourseFolderViewController else {
+            guard let file = sender as? UCSFile, folderView = segue.destinationViewController as? CourseFolderViewController else {
                 return
             }
-            let model = CourseFolderViewModel(course: course, file: file, session: session)
+            let model = CourseFolderViewModel(course: course, folder: file, session: session)
             folderView.configureFromSegue(model)
         default:
             break
@@ -64,11 +65,7 @@ extension CourseViewModel: UCSCourseDelegate {
     }
     
     func foundMainFiles(course: UCSCourse, files: [UCSFile]) {
-        _files.removeAll()
-        files.forEach({
-            let newFile = File(file: $0)
-            self._files.append(newFile)
-        })
+        _files += files
         delegate?.loadedFiles()
     }
     

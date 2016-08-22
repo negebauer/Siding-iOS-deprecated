@@ -13,7 +13,6 @@
 		031284B31D5ACA120067FE52 /* CourseFolderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031284B21D5ACA120067FE52 /* CourseFolderViewModel.swift */; };
 		0324E3001D504A090041080A /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0324E2FF1D504A090041080A /* SnapshotHelper.swift */; };
 		0351696A1D5807A900259D81 /* CourseDataCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 035169691D5807A900259D81 /* CourseDataCell.swift */; };
-		0378C9281D519FAF0057E1BB /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0378C9271D519FAF0057E1BB /* File.swift */; };
 		0378C92C1D51A5ED0057E1BB /* QueueUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0378C92B1D51A5ED0057E1BB /* QueueUtilities.swift */; };
 		0378C92E1D51A9A70057E1BB /* InfoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0378C92D1D51A9A70057E1BB /* InfoTableViewController.swift */; };
 		03844B971D5040FD00099154 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03844B961D5040FD00099154 /* AppDelegate.swift */; };
@@ -50,7 +49,6 @@
 		031284B21D5ACA120067FE52 /* CourseFolderViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseFolderViewModel.swift; sourceTree = "<group>"; };
 		0324E2FF1D504A090041080A /* SnapshotHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SnapshotHelper.swift; path = ../fastlane/SnapshotHelper.swift; sourceTree = "<group>"; };
 		035169691D5807A900259D81 /* CourseDataCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseDataCell.swift; sourceTree = "<group>"; };
-		0378C9271D519FAF0057E1BB /* File.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
 		0378C92B1D51A5ED0057E1BB /* QueueUtilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QueueUtilities.swift; sourceTree = "<group>"; };
 		0378C92D1D51A9A70057E1BB /* InfoTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoTableViewController.swift; sourceTree = "<group>"; };
 		03844B931D5040FD00099154 /* Siding.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Siding.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -128,7 +126,6 @@
 				035169691D5807A900259D81 /* CourseDataCell.swift */,
 				031284B01D5AC9EF0067FE52 /* CourseFolderViewController.swift */,
 				031284B21D5ACA120067FE52 /* CourseFolderViewModel.swift */,
-				0378C9271D519FAF0057E1BB /* File.swift */,
 				0378C92D1D51A9A70057E1BB /* InfoTableViewController.swift */,
 				03844B9A1D5040FD00099154 /* Main.storyboard */,
 				03844B9D1D5040FD00099154 /* Assets.xcassets */,
@@ -384,7 +381,6 @@
 				030AD0B11D5069DB0064BE76 /* CourseViewModel.swift in Sources */,
 				031284B11D5AC9EF0067FE52 /* CourseFolderViewController.swift in Sources */,
 				0378C92E1D51A9A70057E1BB /* InfoTableViewController.swift in Sources */,
-				0378C9281D519FAF0057E1BB /* File.swift in Sources */,
 				03844B971D5040FD00099154 /* AppDelegate.swift in Sources */,
 				03D296811D50506A0040E784 /* Toast.swift in Sources */,
 			);

@@ -90,7 +90,7 @@ extension CourseFolderViewController: UITableViewDelegate {
         
         if file.isFolder() {
             guard let vc = storyboard?.instantiateViewController(R.storyboard.main.courseFolderDetail) else { return }
-            vc.model = CourseFolderViewModel(course: model.course, file: file, session: model.session)
+            vc.model = CourseFolderViewModel(course: model.course, folder: file, session: model.session)
             navigationController?.pushViewController(vc, animated: true)
         } else if file.isFile() {
             guard let cell = folderTable.cellForRowAtIndexPath(indexPath) as? CourseDataCell else { return }

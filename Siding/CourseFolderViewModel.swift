@@ -17,7 +17,7 @@ class CourseFolderViewModel {
     
     // MARK: - Constants
 
-    let file: File
+    let folder: UCSFile
     let session: UCSSession
     private let _course: Course
     
@@ -25,25 +25,26 @@ class CourseFolderViewModel {
     
     weak var delegate: CourseFolderViewModelDelegate?
     var course: Course { return _course }
-    private var _files: [File] = []
-    var files: [File] { return _files }
+    private var _files: [UCSFile] = []
+    var files: [UCSFile] { return _files }
     
     // MARK: - Init
     
-    init(course: Course, file: File, session: UCSSession) {
+    init(course: Course, folder: UCSFile, session: UCSSession) {
         self._course = course
-        self.file = file
+        self.folder = folder
         self.session = session
         course.delegate = self
+        _files = folder.childs
     }
     
     // MARK: - Functions
 
     func load() {
-        course.loadFolderFiles(file)
+        course.loadFolderFiles(folder)
     }
     
-    func download(file: File) {
+    func download(file: UCSFile) {
         // TODO: Download the file
         // TODO: See if file was recently downloaded?
     }
@@ -57,15 +58,11 @@ extension CourseFolderViewModel: UCSCourseDelegate {
     }
     
     func foundMainFiles(course: UCSCourse, files: [UCSFile]) {
-        _files.removeAll()
-        files.forEach({
-            let newFile = File(file: $0)
-            self._files.append(newFile)
-        })
-        delegate?.loadedFiles()
+        // We won't find this here
     }
     
     func foundFolderFiles(course: UCSCourse, folder: UCSFile, files: [UCSFile]) {
-        // We won't find this here
+        _files += files
+        delegate?.loadedFiles()
     }
 }

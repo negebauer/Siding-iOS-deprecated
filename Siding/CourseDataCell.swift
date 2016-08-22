@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import UCSiding
 
 class CourseDataCell: UITableViewCell {
     
@@ -14,7 +15,7 @@ class CourseDataCell: UITableViewCell {
 
     // MARK: - Variables
     
-    var file: File?
+    var file: UCSFile?
     
     // MARK: - Outlets
     
@@ -29,7 +30,7 @@ class CourseDataCell: UITableViewCell {
     
     // MARK: - Functions
     
-    func configure(file: File) {
+    func configure(file: UCSFile) {
         self.file = file
         fileNameLabel.text = file.name
         if file.isFolder() {
