@@ -76,8 +76,7 @@ extension CourseFolderViewModel: UCSFileDelegate {
         delegate?.downloadFileProgress(progress)
     }
     
-    func downloadFinished(path: String) {
-        guard let url = NSURL(string: path) where NSFileManager.defaultManager().fileExistsAtPath(path) else { return }
-        delegate?.downloadedFile(url)
+    func downloadFinished(fileURL: NSURL) {
+        delegate?.downloadedFile(fileURL)
     }
 }

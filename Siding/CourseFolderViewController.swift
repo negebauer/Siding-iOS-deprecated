@@ -70,9 +70,11 @@ extension CourseFolderViewController: CourseFolderViewModelDelegate {
     
     func downloadedFile(fileURL: NSURL) {
         dismissLoadingHUD()
-        guard let cell = fileOpenCell else { return }
-         let fileViewController = UIDocumentInteractionController(URL: fileURL)
-         fileViewController.presentOptionsMenuFromRect(cell.frame, inView: view, animated: true)
+        let fileViewController = UIDocumentInteractionController(URL: fileURL)
+        fileViewController.delegate = self
+        mainQueue({
+            fileViewController.presentPreviewAnimated(true)
+        })
     }
     
     func downloadFileProgress(progress: Float) {
@@ -106,7 +108,7 @@ extension CourseFolderViewController: UITableViewDelegate {
         } else if file.isFile() {
             guard let cell = folderTable.cellForRowAtIndexPath(indexPath) as? CourseDataCell else { return }
             fileOpenCell = cell
-            showProgressLoadingHUD("Descargando", progress: 0)
+            showLoadingHUD("Descargando")
             model.download(file)
         }
     }
@@ -125,5 +127,13 @@ extension CourseFolderViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCellWithIdentifier(R.reuseIdentifier.courseFileCell.identifier) as! CourseDataCell
         cell.configure(model.files[indexPath.row])
         return cell
+    }
+}
+
+// MARK: - UIDocumentInteractionController comply
+extension CourseFolderViewController: UIDocumentInteractionControllerDelegate {
+    
+    func documentInteractionControllerViewControllerForPreview(controller: UIDocumentInteractionController) -> UIViewController{
+        return navigationController ?? self
     }
 }
