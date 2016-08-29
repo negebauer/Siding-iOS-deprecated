@@ -126,9 +126,14 @@ extension CourseViewController: UITableViewDelegate {
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         courseTable.deselectRowAtIndexPath(indexPath, animated: true)
-        guard let model = model else { return }
-        let file = model.files[indexPath.row]
-        performSegueWithIdentifier(R.segue.courseViewController.showCourseFolder, sender: file)
+        guard let model = model, let section = TableSection(rawValue: indexPath.section) else { return }
+        switch section {
+        case .CourseData:
+            return
+        case .CourseFolder:
+            let file = model.files[indexPath.row]
+            performSegueWithIdentifier(R.segue.courseViewController.showCourseFolder, sender: file)
+        }
     }
 }
 

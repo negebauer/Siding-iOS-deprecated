@@ -59,6 +59,7 @@ class SidingViewController: UIViewController, ProgressHUDContainer {
     // MARK: - Actions
     
     @IBAction func logout(sender: AnyObject) {
+        ActivityIndicator.shared.kill()
         dismissLoadingHUD()
         isLogin = false
         Settings.instance.deleteData()
@@ -68,7 +69,7 @@ class SidingViewController: UIViewController, ProgressHUDContainer {
     @IBAction func reload(sender: AnyObject) {
         guard !isLogin && loginCooldown == nil else { return }
         loginCooldown = NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: #selector(loginCooldownCompleted), userInfo: nil, repeats: false)
-        guard Settings.instance.isUserSet() else { return configureCredentials(true) }
+        ActivityIndicator.shared.kill()
         login(true, reload: true)
     }
     
@@ -93,7 +94,7 @@ class SidingViewController: UIViewController, ProgressHUDContainer {
             sidingTable.reloadData()
         }
         guard Settings.instance.isUserSet() else {
-            if viewAppeared { configureCredentials(viewAppeared) }
+            if viewAppeared { configureCredentials(viewAppeared, reload: reload) }
             return cancelLogin()
         }
         guard model == nil else { return cancelLogin() }

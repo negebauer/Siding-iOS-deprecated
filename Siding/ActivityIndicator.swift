@@ -12,7 +12,7 @@ class ActivityIndicator {
     
     // MARK: - Constants
     
-    static let instance = ActivityIndicator()
+    static let shared = ActivityIndicator()
     let application = UIApplication.sharedApplication()
     
     // MARK: - Variables
@@ -43,7 +43,12 @@ class ActivityIndicator {
         updateIndicator()
     }
     
-    func updateIndicator() {
+    func kill() {
+        taskCount = 0
+        networkActivityIndicatorVisible = false
+    }
+    
+    private func updateIndicator() {
         if taskCount > 0 {
             if !networkActivityIndicatorVisible {
                 networkActivityIndicatorVisible = !networkActivityIndicatorVisible
