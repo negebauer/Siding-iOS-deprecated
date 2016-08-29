@@ -10,6 +10,7 @@ import UCSiding
 
 protocol CourseViewModelDelegate: class {
     func loadedFiles()
+    func loadedStudents(model: CourseViewModel)
 }
 
 class CourseViewModel {
@@ -27,6 +28,8 @@ class CourseViewModel {
     var files: [UCSFile] { return _files }
     var hasLoadedFiles = false
     
+    var students: [UCSStudent] = []
+    
     // MARK: - Init
     
     init(course: Course, session: UCSSession) {
@@ -41,6 +44,15 @@ class CourseViewModel {
     func load() {
         guard !hasLoadedFiles else { return }
         course.loadMainFiles()
+    }
+    
+    func loadStudents() {
+        course.loadStudents(true, success: { students in
+            self.students = students
+            self.delegate?.loadedStudents(self)
+            }, failure: { error in
+                
+        })
     }
     
     func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

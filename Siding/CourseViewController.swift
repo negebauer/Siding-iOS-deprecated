@@ -95,6 +95,10 @@ extension CourseViewController: CourseViewModelDelegate {
             self.courseTable.reloadData()
         })
     }
+    
+    func loadedStudents(model: CourseViewModel) {
+        // TODO: Show the students
+    }
 }
 
 // MARK: - UITableViewDelegate conform
@@ -129,7 +133,13 @@ extension CourseViewController: UITableViewDelegate {
         guard let model = model, let section = TableSection(rawValue: indexPath.section) else { return }
         switch section {
         case .CourseData:
-            return
+            guard let row = CourseDataRow(rawValue: indexPath.row) else { return }
+            switch row {
+            case .Students:
+                model.loadStudents()
+            default:
+                break
+            }
         case .CourseFolder:
             let file = model.files[indexPath.row]
             performSegueWithIdentifier(R.segue.courseViewController.showCourseFolder, sender: file)
