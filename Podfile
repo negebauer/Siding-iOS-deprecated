@@ -12,11 +12,11 @@ target 'Siding' do
     pod 'Firebase/AdMob'
 
     # Backend
-    pod 'KeychainAccess', '~> 2.3.5'
-    pod 'R.swift', '~> 2.1.0'
+    pod 'KeychainAccess'
+    pod 'R.swift'
     pod 'UCSiding', path: '../UCSiding'
 
     # UI
     pod 'Static', git: 'https://github.com/venmo/Static'
-    pod 'MBProgressHUD', '~> 1.0.0'
+    pod 'MBProgressHUD'
 end
