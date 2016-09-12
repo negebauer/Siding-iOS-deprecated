@@ -9,8 +9,8 @@
 import Foundation
 
 /// MainQueue: UI updates must be done here.
-func mainQueue(block: () -> Void) {
-    dispatch_async(dispatch_get_main_queue(), {
+func mainQueue(_ block: @escaping () -> Void) {
+    DispatchQueue.main.async(execute: {
         block()
     })
 }

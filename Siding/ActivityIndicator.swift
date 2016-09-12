@@ -13,16 +13,16 @@ class ActivityIndicator {
     // MARK: - Constants
     
     static let shared = ActivityIndicator()
-    let application = UIApplication.sharedApplication()
+    let application = UIApplication.shared
     
     // MARK: - Variables
     
     var taskCount = 0
     var networkActivityIndicatorVisible: Bool {
         get {
-            return application.networkActivityIndicatorVisible
+            return application.isNetworkActivityIndicatorVisible
         } set (visible) {
-            application.networkActivityIndicatorVisible = visible
+            application.isNetworkActivityIndicatorVisible = visible
         }
     }
     
@@ -48,7 +48,7 @@ class ActivityIndicator {
         networkActivityIndicatorVisible = false
     }
     
-    private func updateIndicator() {
+    fileprivate func updateIndicator() {
         if taskCount > 0 {
             if !networkActivityIndicatorVisible {
                 networkActivityIndicatorVisible = !networkActivityIndicatorVisible

@@ -10,8 +10,8 @@ import UCSiding
 
 protocol CourseFolderViewModelDelegate: class {
     func loadedFiles()
-    func downloadFileProgress(progress: Float)
-    func downloadedFile(fileURL: NSURL)
+    func downloadFileProgress(_ progress: Float)
+    func downloadedFile(_ fileURL: NSURL)
 }
 
 class CourseFolderViewModel {
@@ -20,13 +20,13 @@ class CourseFolderViewModel {
 
     let folder: UCSFile
     let session: UCSSession
-    private let _course: Course
+    fileprivate let _course: Course
     
     // MARK: - Variables
     
     weak var delegate: CourseFolderViewModelDelegate?
     var course: Course { return _course }
-    private var _files: [UCSFile] = []
+    fileprivate var _files: [UCSFile] = []
     var files: [UCSFile] { return _files }
     var hasLoadedFiles = false
     
@@ -46,7 +46,7 @@ class CourseFolderViewModel {
         course.loadFolderFiles(folder)
     }
     
-    func download(file: UCSFile) {
+    func download(_ file: UCSFile) {
         file.download(session.headers(), delegate: self)
     }
 }
@@ -54,15 +54,15 @@ class CourseFolderViewModel {
 // MARK: - UCSCourseDelegate conform
 extension CourseFolderViewModel: UCSCourseDelegate {
     
-    func foundFile(course: UCSCourse, file: UCSFile) {
+    func foundFile(_ course: UCSCourse, file: UCSFile) {
         // Don't do anything. We want to have all files
     }
     
-    func foundMainFiles(course: UCSCourse, files: [UCSFile]) {
+    func foundMainFiles(_ course: UCSCourse, files: [UCSFile]) {
         // We won't find this here
     }
     
-    func foundFolderFiles(course: UCSCourse, folder: UCSFile, files: [UCSFile]) {
+    func foundFolderFiles(_ course: UCSCourse, folder: UCSFile, files: [UCSFile]) {
         _files = files
         hasLoadedFiles = true
         delegate?.loadedFiles()
@@ -72,11 +72,11 @@ extension CourseFolderViewModel: UCSCourseDelegate {
 // MARK: - UCSFileDelegate comply
 extension CourseFolderViewModel: UCSFileDelegate {
     
-    func downloadProgress(progress: Float) {
+    func downloadProgress(_ progress: Float) {
         delegate?.downloadFileProgress(progress)
     }
     
-    func downloadFinished(fileURL: NSURL) {
+    func downloadFinished(_ fileURL: NSURL) {
         delegate?.downloadedFile(fileURL)
     }
 }

@@ -12,35 +12,35 @@ struct R: Rswift.Validatable {
   }
   
   struct color {
-    private init() {}
+    fileprivate init() {}
   }
   
   /// This `R.file` struct is generated, and contains static references to 0 files.
   struct file {
-    private init() {}
+    fileprivate init() {}
   }
   
   /// This `R.font` struct is generated, and contains static references to 0 fonts.
   struct font {
-    private init() {}
+    fileprivate init() {}
   }
   
   /// This `R.image` struct is generated, and contains static references to 0 images.
   struct image {
-    private init() {}
+    fileprivate init() {}
   }
   
-  private struct intern: Rswift.Validatable {
+  fileprivate struct intern: Rswift.Validatable {
     static func validate() throws {
       try _R.validate()
     }
     
-    private init() {}
+    fileprivate init() {}
   }
   
   /// This `R.nib` struct is generated, and contains static references to 0 nibs.
   struct nib {
-    private init() {}
+    fileprivate init() {}
   }
   
   /// This `R.reuseIdentifier` struct is generated, and contains static references to 3 reuse identifiers.
@@ -52,7 +52,7 @@ struct R: Rswift.Validatable {
     /// Reuse identifier `CourseFileCell`.
     static let courseFileCell: ReuseIdentifier<CourseDataCell> = ReuseIdentifier(identifier: "CourseFileCell")
     
-    private init() {}
+    fileprivate init() {}
   }
   
   /// This `R.segue` struct is generated, and contains static references to 2 view controllers.
@@ -65,11 +65,11 @@ struct R: Rswift.Validatable {
       /// Optionally returns a typed version of segue `showCourseFolder`.
       /// Returns nil if either the segue identifier, the source, destination, or segue types don't match.
       /// For use inside `prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)`.
-      static func showCourseFolder(segue segue: UIStoryboardSegue) -> TypedStoryboardSegueInfo<UIStoryboardSegue, CourseViewController, CourseFolderViewController>? {
+      static func showCourseFolder(segue: UIStoryboardSegue) -> TypedStoryboardSegueInfo<UIStoryboardSegue, CourseViewController, CourseFolderViewController>? {
         return TypedStoryboardSegueInfo(segueIdentifier: R.segue.courseViewController.showCourseFolder, segue: segue)
       }
       
-      private init() {}
+      fileprivate init() {}
     }
     
     /// This struct is generated for `SidingViewController`, and contains static references to 2 segues.
@@ -82,21 +82,21 @@ struct R: Rswift.Validatable {
       /// Optionally returns a typed version of segue `ShowAppInfo`.
       /// Returns nil if either the segue identifier, the source, destination, or segue types don't match.
       /// For use inside `prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)`.
-      static func showAppInfo(segue segue: UIStoryboardSegue) -> TypedStoryboardSegueInfo<UIStoryboardSegue, SidingViewController, InfoTableViewController>? {
+      static func showAppInfo(segue: UIStoryboardSegue) -> TypedStoryboardSegueInfo<UIStoryboardSegue, SidingViewController, InfoTableViewController>? {
         return TypedStoryboardSegueInfo(segueIdentifier: R.segue.sidingViewController.showAppInfo, segue: segue)
       }
       
       /// Optionally returns a typed version of segue `showCourse`.
       /// Returns nil if either the segue identifier, the source, destination, or segue types don't match.
       /// For use inside `prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)`.
-      static func showCourse(segue segue: UIStoryboardSegue) -> TypedStoryboardSegueInfo<UIStoryboardSegue, SidingViewController, CourseViewController>? {
+      static func showCourse(segue: UIStoryboardSegue) -> TypedStoryboardSegueInfo<UIStoryboardSegue, SidingViewController, CourseViewController>? {
         return TypedStoryboardSegueInfo(segueIdentifier: R.segue.sidingViewController.showCourse, segue: segue)
       }
       
-      private init() {}
+      fileprivate init() {}
     }
     
-    private init() {}
+    fileprivate init() {}
   }
   
   /// This `R.storyboard` struct is generated, and contains static references to 2 storyboards.
@@ -116,21 +116,21 @@ struct R: Rswift.Validatable {
       return UIStoryboard(resource: R.storyboard.main)
     }
     
-    private init() {}
+    fileprivate init() {}
   }
   
-  private init() {}
+  fileprivate init() {}
 }
 
 struct _R: Rswift.Validatable {
-  static let hostingBundle = NSBundle(identifier: "com.negebauer.Siding") ?? NSBundle.mainBundle()
+  static let hostingBundle = Bundle(identifier: "com.negebauer.Siding") ?? Bundle.main
   
   static func validate() throws {
     try storyboard.validate()
   }
   
   struct nib {
-    private init() {}
+    fileprivate init() {}
   }
   
   struct storyboard: Rswift.Validatable {
@@ -144,7 +144,7 @@ struct _R: Rswift.Validatable {
       let bundle = _R.hostingBundle
       let name = "LaunchScreen"
       
-      private init() {}
+      fileprivate init() {}
     }
     
     struct main: StoryboardResourceWithInitialControllerType, Rswift.Validatable {
@@ -162,11 +162,11 @@ struct _R: Rswift.Validatable {
         if _R.storyboard.main().courseFolderDetail() == nil { throw ValidationError(description:"[R.swift] ViewController with identifier 'courseFolderDetail' could not be loaded from storyboard 'Main' as 'CourseFolderViewController'.") }
       }
       
-      private init() {}
+      fileprivate init() {}
     }
     
-    private init() {}
+    fileprivate init() {}
   }
   
-  private init() {}
+  fileprivate init() {}
 }

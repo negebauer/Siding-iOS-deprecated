@@ -41,14 +41,14 @@ class InfoTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        barButton.enabled = false
-        barButton.tintColor = .clearColor()
+        barButton.isEnabled = false
+        barButton.tintColor = .clear()
         // setNavigationViewColor()
         navigationItem.title = viewTitle
         setData()
     }
 
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
     }
     
@@ -88,13 +88,13 @@ class InfoTableViewController: UITableViewController {
 
     // MARK: - Functions
 
-    func showActions(title: String, url: String) {
-        let alert = UIAlertController(title: title, message: url, preferredStyle: .ActionSheet)
-        alert.addAction(UIAlertAction(title: "Abrir en Safari", style: .Default, handler: { _ in self.goToURL(url) }))
-        alert.addAction(UIAlertAction(title: "Compartir", style: .Default, handler: { _ in self.share(url) }))
+    func showActions(_ title: String, url: String) {
+        let alert = UIAlertController(title: title, message: url, preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: "Abrir en Safari", style: .default, handler: { _ in self.goToURL(url) }))
+        alert.addAction(UIAlertAction(title: "Compartir", style: .default, handler: { _ in self.share(url) }))
         alert.addAction(AlertAction.cancelAction())
         alert.popoverPresentationController?.barButtonItem = barButton
-        presentViewController(alert, animated: true, completion: nil)
+        present(alert, animated: true, completion: nil)
     }
     
     func review() -> String {
@@ -105,55 +105,55 @@ class InfoTableViewController: UITableViewController {
     }
 
     func reviewAction() {
-        Answers.logCustomEventWithName("Review", customAttributes: ["Version": version()])
+        Answers.logCustomEvent(withName: "Review", customAttributes: ["Version": version()])
         Settings.instance.reviewVersion = version()
         goToURL(reviewUrl)
         setData()
     }
 
-    func pretty(url: String) -> String {
-        var readableurl = url.stringByReplacingOccurrencesOfString("https://", withString: "")
-        readableurl = readableurl.stringByReplacingOccurrencesOfString("http://", withString: "")
+    func pretty(_ url: String) -> String {
+        var readableurl = url.replacingOccurrences(of: "https://", with: "")
+        readableurl = readableurl.replacingOccurrences(of: "http://", with: "")
         return readableurl
     }
 
     func version() -> String {
         var ver = ""
-        if let version = NSBundle.mainBundle().infoDictionary?["CFBundleShortVersionString"] as? String {
+        if let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String {
             ver += version
         }
-        if let build = NSBundle.mainBundle().infoDictionary?["CFBundleVersion"] as? String {
+        if let build = Bundle.main.infoDictionary?["CFBundleVersion"] as? String {
             ver += " (\(build))"
         }
-        ver = ver.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+        ver = ver.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
         return ver != "" ? ver : "?"
     }
     
-    func share(url: String) {
+    func share(_ url: String) {
         //        NSArray *activityItems = [NSArray arrayWithObjects:shareString, shareImage, shareUrl, nil];
         //        UIActivityViewController *activityViewController = [[UIActivityViewController alloc] initWithActivityItems:activityItems applicationActivities:nil];
         //        activityViewController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
         //
         //        [self presentViewController:activityViewController animated:YES completion:nil];
-        Answers.logCustomEventWithName("Share", customAttributes: ["url": url])
-        let shareView = UIActivityViewController(activityItems: [NSURL(string: url)!], applicationActivities: nil)
+        Answers.logCustomEvent(withName: "Share", customAttributes: ["url": url])
+        let shareView = UIActivityViewController(activityItems: [URL(string: url)!], applicationActivities: nil)
         shareView.popoverPresentationController?.barButtonItem = barButton
-        presentViewController(shareView, animated: true, completion: nil)
+        present(shareView, animated: true, completion: nil)
     }
 
-    func goToURL(url: String) {
-        Answers.logCustomEventWithName("Open url", customAttributes: ["url": url])
-        UIApplication.sharedApplication().openURL(NSURL(string: url)!)
+    func goToURL(_ url: String) {
+        Answers.logCustomEvent(withName: "Open url", customAttributes: ["url": url])
+        UIApplication.shared.openURL(URL(string: url)!)
     }
 
-    func sendEmail(email: String) {
-        Answers.logCustomEventWithName("Send email", customAttributes: nil)
+    func sendEmail(_ email: String) {
+        Answers.logCustomEvent(withName: "Send email", customAttributes: nil)
         self.goToURL("mailto:\(email)")
     }
 
     // MARK: - Navigation
 
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 
     }
 

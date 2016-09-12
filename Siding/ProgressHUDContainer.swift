@@ -12,30 +12,30 @@ protocol ProgressHUDContainer: class {
     
     var hud: MBProgressHUD? { get set }
     
-    func showLoadingHUD(text: String)
+    func showLoadingHUD(_ text: String)
     func dismissLoadingHUD()
 }
 
 extension ProgressHUDContainer where Self: UIViewController {
     
-    func showLoadingHUD(text: String = "Cargando") {
+    func showLoadingHUD(_ text: String = "Cargando") {
         mainQueue(({
-            self.hud = MBProgressHUD.showHUDAddedTo(self.view, animated: true)
-            self.hud?.mode = MBProgressHUDMode.Indeterminate
+            self.hud = MBProgressHUD.showAdded(to: self.view, animated: true)
+            self.hud?.mode = MBProgressHUDMode.indeterminate
             self.hud?.label.text = text
         }))
     }
     
     func dismissLoadingHUD() {
         mainQueue({
-            MBProgressHUD.hideHUDForView(self.view, animated: true)
+            MBProgressHUD.hide(for: self.view, animated: true)
         })
     }
     
-    func showProgressLoadingHUD(text: String = "Cargando", progress: Float) {
+    func showProgressLoadingHUD(_ text: String = "Cargando", progress: Float) {
         mainQueue(({
-            self.hud = MBProgressHUD.showHUDAddedTo(self.view, animated: true)
-            self.hud?.mode = MBProgressHUDMode.Determinate
+            self.hud = MBProgressHUD.showAdded(to: self.view, animated: true)
+            self.hud?.mode = MBProgressHUDMode.determinate
             self.hud?.label.text = text
         }))
     }

@@ -14,11 +14,11 @@ class Settings: NSObject {
     // MARK: - Constants
 
     static let instance = Settings()
-    private let keychain = Keychain(service: "com.negebauer.Siding")
-    private let keyUsername = "username"
-    private let keyPassword = "password"
-    private let keyConfigured = "configured"
-    private let keyReviewVersion = "reviewVersion"
+    fileprivate let keychain = Keychain(service: "com.negebauer.Siding")
+    fileprivate let keyUsername = "username"
+    fileprivate let keyPassword = "password"
+    fileprivate let keyConfigured = "configured"
+    fileprivate let keyReviewVersion = "reviewVersion"
     
     // MARK: - Variables
     
@@ -59,10 +59,10 @@ class Settings: NSObject {
     
     override init() {
         super.init()
-        let userDefaults = NSUserDefaults.standardUserDefaults()
-        if !userDefaults.boolForKey(keyConfigured) {
+        let userDefaults = UserDefaults.standard
+        if !userDefaults.bool(forKey: keyConfigured) {
             deleteData()
-            userDefaults.setBool(true, forKey: keyConfigured)
+            userDefaults.set(true, forKey: keyConfigured)
         }
     }
     
@@ -72,7 +72,7 @@ class Settings: NSObject {
         return (username != "" && password != "")
     }
     
-    func configure(username: String, password: String) {
+    func configure(_ username: String, password: String) {
         self.username = username
         self.password = password
     }

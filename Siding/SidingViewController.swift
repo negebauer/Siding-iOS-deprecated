@@ -14,7 +14,7 @@ import MBProgressHUD
 class SidingViewController: UIViewController, ProgressHUDContainer {
     
     enum TableSection: Int {
-        case Courses = 0
+        case courses = 0
         
         static func numberOfSections() -> Int { return 1 }
     }
@@ -25,7 +25,7 @@ class SidingViewController: UIViewController, ProgressHUDContainer {
     
     var model: SidingViewModel?
     var isLogin = false
-    var loginCooldown: NSTimer?
+    var loginCooldown: Timer?
     var hud: MBProgressHUD?
     
     // MARK: - Outlets
@@ -49,16 +49,16 @@ class SidingViewController: UIViewController, ProgressHUDContainer {
         #if DEBUG
             request.testDevices = [ kGADSimulatorID ]
         #endif
-        adBanner.loadRequest(request)
+        adBanner.load(request)
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         login(true)
     }
     
     // MARK: - Actions
     
-    @IBAction func logout(sender: AnyObject) {
+    @IBAction func logout(_ sender: AnyObject) {
         ActivityIndicator.shared.kill()
         dismissLoadingHUD()
         isLogin = false
@@ -66,14 +66,14 @@ class SidingViewController: UIViewController, ProgressHUDContainer {
         login(true, reload: true)
     }
     
-    @IBAction func reload(sender: AnyObject) {
+    @IBAction func reload(_ sender: AnyObject) {
         guard !isLogin && loginCooldown == nil else { return }
-        loginCooldown = NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: #selector(loginCooldownCompleted), userInfo: nil, repeats: false)
+        loginCooldown = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(loginCooldownCompleted), userInfo: nil, repeats: false)
         ActivityIndicator.shared.kill()
         login(true, reload: true)
     }
     
-    @IBAction func nameTap(sender: AnyObject) {
+    @IBAction func nameTap(_ sender: AnyObject) {
         performSegueWithIdentifier(R.segue.sidingViewController.showAppInfo, sender: nil)
     }
     
@@ -84,7 +84,7 @@ class SidingViewController: UIViewController, ProgressHUDContainer {
         loginCooldown = nil
     }
     
-    func login(viewAppeared: Bool, reload: Bool = false) {
+    func login(_ viewAppeared: Bool, reload: Bool = false) {
         guard !isLogin else { return }
         let cancelLogin = { self.isLogin = false }
         isLogin = true
@@ -104,8 +104,8 @@ class SidingViewController: UIViewController, ProgressHUDContainer {
         model!.login()
     }
     
-    func configureCredentials(viewAppeared: Bool, reload: Bool = false) {
-        let alert = UIAlertController(title: "Credenciales uc 🔑", message: "", preferredStyle: .Alert)
+    func configureCredentials(_ viewAppeared: Bool, reload: Bool = false) {
+        let alert = UIAlertController(title: "Credenciales uc 🔑", message: "", preferredStyle: .alert)
         // alert.addAction(AlertAction.cancelAction())
         alert.addAction(AlertAction.alertAction("Log in") {
             let username = alert.textFields?[0].text ?? ""
@@ -113,28 +113,28 @@ class SidingViewController: UIViewController, ProgressHUDContainer {
             Settings.instance.configure(username, password: password)
                 self.login(viewAppeared, reload: reload)
             })
-        alert.addTextFieldWithConfigurationHandler() {
+        alert.addTextField() {
             $0.placeholder = "Usuario sin @uc"
             $0.text = Settings.instance.username
         }
-        alert.addTextFieldWithConfigurationHandler() {
+        alert.addTextField() {
             $0.placeholder = "Contraseña"
-            $0.secureTextEntry = true
+            $0.isSecureTextEntry = true
             $0.text = Settings.instance.password
         }
-        presentViewController(alert, animated: true, completion: nil)
+        present(alert, animated: true, completion: nil)
     }
     
-    func showErrorAlert(title: String = "Error", message: String, retry: (() -> Void)? = nil, ok: (() -> Void)? = nil) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
+    func showErrorAlert(_ title: String = "Error", message: String, retry: (() -> Void)? = nil, ok: (() -> Void)? = nil) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alert.addAction(AlertAction.okAction({ _ in ok?() }))
         alert.addAction(AlertAction.retryAction(retry))
-        presentViewController(alert, animated: true, completion: nil)
+        present(alert, animated: true, completion: nil)
     }
     
     // MARK: - Navigation
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let model = model else { return }
         model.prepareForSegue(segue, sender: sender)
     }
@@ -144,13 +144,13 @@ class SidingViewController: UIViewController, ProgressHUDContainer {
 // MARK: - SidingViewModelDelegate conform
 extension SidingViewController: SidingViewModelDelegate {
     
-    func loadedSiding(model: SidingViewModel, result: LoginResult) {
+    func loadedSiding(_ model: SidingViewModel, result: LoginResult) {
         dismissLoadingHUD()
         isLogin = false
         switch result {
-        case .Success:
+        case .success:
             model.loadSiding()
-        case .Error(let reason):
+        case .error(let reason):
             showErrorAlert("Error login", message: reason, retry: { self.login(true, reload: true) },
                            ok: { self.configureCredentials(true, reload: true) })
         }
@@ -164,14 +164,14 @@ extension SidingViewController: SidingViewModelDelegate {
 // MARK: - UITableViewDelegate conform
 extension SidingViewController: UITableViewDelegate {
     
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 60
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        sidingTable.deselectRowAtIndexPath(indexPath, animated: true)
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        sidingTable.deselectRow(at: indexPath, animated: true)
         guard let model = model else { return }
-        let course = model.courses[indexPath.row]
+        let course = model.courses[(indexPath as NSIndexPath).row]
         performSegueWithIdentifier(R.segue.sidingViewController.showCourse, sender: course)
     }
 }
@@ -179,22 +179,22 @@ extension SidingViewController: UITableViewDelegate {
 // MARK: - UITableViewDataSource conform
 extension SidingViewController: UITableViewDataSource {
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return TableSection.numberOfSections()
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard let model = model, let section = TableSection(rawValue: section) else { return 0 }
         switch section {
-        case .Courses:
+        case .courses:
             return model.courses.count
         }
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        guard let model = model, let section = TableSection(rawValue: indexPath.section) else { return UITableViewCell() }
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let model = model, let section = TableSection(rawValue: (indexPath as NSIndexPath).section) else { return UITableViewCell() }
         switch section {
-        case .Courses:
+        case .courses:
             let cell = tableView.dequeueReusableCellWithIdentifier(R.reuseIdentifier.courseCell.identifier) as! CourseCell
             cell.config(model.courses[indexPath.row])
             return cell

@@ -30,7 +30,7 @@ class CourseDataCell: UITableViewCell {
     
     // MARK: - Functions
     
-    func configure(file: UCSFile) {
+    func configure(withFile: UCSFile) {
         self.file = file
         fileNameLabel.text = file.name
         if file.isFolder() {
@@ -40,9 +40,9 @@ class CourseDataCell: UITableViewCell {
         }
     }
     
-    func configure(data: CourseViewController.CourseDataRow) {
+    func configure(withData: CourseViewController.CourseDataRow) {
         dataLabel.text = data.name()
-        comingSoonLabel.hidden = false
+        comingSoonLabel.isHidden = false
     }
     
     // MARK: - Navigation

@@ -36,7 +36,7 @@ class CourseFolderViewController: UIViewController, ProgressHUDContainer {
         showLoadingHUD("Cargando archivos")
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
     }
@@ -45,14 +45,14 @@ class CourseFolderViewController: UIViewController, ProgressHUDContainer {
     
     // MARK: - Functions
     
-    func configureFromSegue(folderModel: CourseFolderViewModel) {
+    func configureFromSegue(_ folderModel: CourseFolderViewModel) {
         model = folderModel
         model?.delegate = self
     }
     
     // MARK: - Navigation
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
     }
 
@@ -68,16 +68,16 @@ extension CourseFolderViewController: CourseFolderViewModelDelegate {
         })
     }
     
-    func downloadedFile(fileURL: NSURL) {
+    func downloadedFile(_ fileURL: URL) {
         dismissLoadingHUD()
-        let fileViewController = UIDocumentInteractionController(URL: fileURL)
+        let fileViewController = UIDocumentInteractionController(url: fileURL)
         fileViewController.delegate = self
         mainQueue({
-            fileViewController.presentPreviewAnimated(true)
+            fileViewController.presentPreview(animated: true)
         })
     }
     
-    func downloadFileProgress(progress: Float) {
+    func downloadFileProgress(_ progress: Float) {
         mainQueue({
             self.hud?.progress = progress
         })
@@ -87,16 +87,16 @@ extension CourseFolderViewController: CourseFolderViewModelDelegate {
 // MARK: - UITableViewDelegate conform
 extension CourseFolderViewController: UITableViewDelegate {
     
-    func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 0
     }
     
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 60
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        folderTable.deselectRowAtIndexPath(indexPath, animated: true)
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        folderTable.deselectRow(at: indexPath, animated: true)
         guard let model = model else { return }
         let file = model.files[indexPath.row]
         
@@ -106,7 +106,7 @@ extension CourseFolderViewController: UITableViewDelegate {
             vc.configureFromSegue(model)
             navigationController?.pushViewController(vc, animated: true)
         } else if file.isFile() {
-            guard let cell = folderTable.cellForRowAtIndexPath(indexPath) as? CourseDataCell else { return }
+            guard let cell = folderTable.cellForRow(at: indexPath) as? CourseDataCell else { return }
             fileOpenCell = cell
             showLoadingHUD("Descargando")
             model.download(file)
@@ -117,12 +117,12 @@ extension CourseFolderViewController: UITableViewDelegate {
 // MARK: - UITableViewDataSource conform
 extension CourseFolderViewController: UITableViewDataSource {
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard let model = model else { return 0 }
         return model.files.count
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let model = model else { return UITableViewCell() }
         let cell = tableView.dequeueReusableCellWithIdentifier(R.reuseIdentifier.courseFileCell.identifier) as! CourseDataCell
         cell.configure(model.files[indexPath.row])
@@ -133,7 +133,7 @@ extension CourseFolderViewController: UITableViewDataSource {
 // MARK: - UIDocumentInteractionController comply
 extension CourseFolderViewController: UIDocumentInteractionControllerDelegate {
     
-    func documentInteractionControllerViewControllerForPreview(controller: UIDocumentInteractionController) -> UIViewController{
+    func documentInteractionControllerViewControllerForPreview(_ controller: UIDocumentInteractionController) -> UIViewController{
         return navigationController ?? self
     }
 }

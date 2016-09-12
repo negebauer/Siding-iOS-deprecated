@@ -10,7 +10,7 @@ import UCSiding
 
 protocol CourseViewModelDelegate: class {
     func loadedFiles()
-    func loadedStudents(model: CourseViewModel)
+    func loadedStudents(_ model: CourseViewModel)
 }
 
 class CourseViewModel {
@@ -18,13 +18,13 @@ class CourseViewModel {
     // MARK: - Constants
 
     let session: UCSSession
-    private let _course: Course
+    fileprivate let _course: Course
     
     // MARK: - Variables
     
     weak var delegate: CourseViewModelDelegate?
     var course: Course { return _course }
-    private var _files: [UCSFile] = []
+    fileprivate var _files: [UCSFile] = []
     var files: [UCSFile] { return _files }
     var hasLoadedFiles = false
     
@@ -55,11 +55,11 @@ class CourseViewModel {
         })
     }
     
-    func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    func prepareForSegue(_ segue: UIStoryboardSegue, sender: AnyObject?) {
         guard let id = segue.identifier else { return }
         switch id {
         case R.segue.courseViewController.showCourseFolder.identifier:
-            guard let file = sender as? UCSFile, folderView = segue.destinationViewController as? CourseFolderViewController else {
+            guard let file = sender as? UCSFile, let folderView = segue.destinationViewController as? CourseFolderViewController else {
                 return
             }
             let model = CourseFolderViewModel(course: course, folder: file, session: session)
@@ -74,17 +74,17 @@ class CourseViewModel {
 // MARK: - UCSCourseDelegate conform
 extension CourseViewModel: UCSCourseDelegate {
     
-    func foundFile(course: UCSCourse, file: UCSFile) {
+    func foundFile(_ course: UCSCourse, file: UCSFile) {
         // Don't do anything. We want to have all files
     }
     
-    func foundMainFiles(course: UCSCourse, files: [UCSFile]) {
+    func foundMainFiles(_ course: UCSCourse, files: [UCSFile]) {
         _files = files
         hasLoadedFiles = true
         delegate?.loadedFiles()
     }
     
-    func foundFolderFiles(course: UCSCourse, folder: UCSFile, files: [UCSFile]) {
+    func foundFolderFiles(_ course: UCSCourse, folder: UCSFile, files: [UCSFile]) {
         // We won't find this here
     }
 }

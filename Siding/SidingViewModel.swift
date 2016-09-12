@@ -9,12 +9,12 @@
 import UCSiding
 
 enum LoginResult {
-    case Success
-    case Error(description: String)
+    case success
+    case error(description: String)
 }
 
 protocol SidingViewModelDelegate: class {
-    func loadedSiding(model: SidingViewModel, result: LoginResult)
+    func loadedSiding(_ model: SidingViewModel, result: LoginResult)
     func updateSidingTable()
 }
 
@@ -22,8 +22,8 @@ class SidingViewModel {
     
     // MARK: - Constants
     
-    private let session: UCSSession
-    private let siding: UCSiding
+    fileprivate let session: UCSSession
+    fileprivate let siding: UCSiding
     
     // MARK: - Variables
     
@@ -55,11 +55,11 @@ class SidingViewModel {
         siding.loadCourses()
     }
     
-    func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    func prepareForSegue(_ segue: UIStoryboardSegue, sender: AnyObject?) {
         guard let id = segue.identifier else { return }
         switch id {
         case R.segue.sidingViewController.showCourse.identifier:
-            guard let course = sender as? Course, courseView = segue.destinationViewController as? CourseViewController else {
+            guard let course = sender as? Course, let courseView = segue.destinationViewController as? CourseViewController else {
                 return
             }
             let model = CourseViewModel(course: course, session: session)
@@ -73,7 +73,7 @@ class SidingViewModel {
 // MARK: UCSidingDelegate conform
 extension SidingViewModel: UCSidingDelegate {
     
-    func coursesFound(siding: UCSiding, courses: [UCSCourse]) {
+    func coursesFound(_ siding: UCSiding, courses: [UCSCourse]) {
         courses.forEach({ course in
             let course = Course(course: course)
             self._courses.append(course)
@@ -81,7 +81,7 @@ extension SidingViewModel: UCSidingDelegate {
         delegate?.updateSidingTable()
     }
     
-    func courseFoundFile(siding: UCSiding, courses: [UCSCourse], course: UCSCourse, file: UCSFile) {
+    func courseFoundFile(_ siding: UCSiding, courses: [UCSCourse], course: UCSCourse, file: UCSFile) {
         
     }
     

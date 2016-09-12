@@ -12,30 +12,30 @@ import MBProgressHUD
 class CourseViewController: UIViewController, ProgressHUDContainer {
     
     enum TableSection: Int {
-        case CourseData = 0, CourseFolder = 1
+        case courseData = 0, courseFolder = 1
         
         static func numberOfSections() -> Int { return 2 }
     }
     
     enum CourseDataRow: Int {
-        case News = 0, Program = 1, Calendar = 2, Forms = 3, Students = 4, Grades = 5, Forum = 6
+        case news = 0, program = 1, calendar = 2, forms = 3, students = 4, grades = 5, forum = 6
         
         static func numberOfRows() -> Int { return 6 }
         func name() -> String {
             switch self {
-            case .News:
+            case .news:
                 return "Avisos"
-            case .Program:
+            case .program:
                 return "Programa"
-            case .Calendar:
+            case .calendar:
                 return "Calendario"
-            case .Forms:
+            case .forms:
                 return "Cuestionarios"
-            case .Students:
+            case .students:
                 return "Alumnos"
-            case .Grades:
+            case .grades:
                 return "Notas"
-            case .Forum:
+            case .forum:
                 return "Foro"
             }
         }
@@ -65,7 +65,7 @@ class CourseViewController: UIViewController, ProgressHUDContainer {
         showLoadingHUD("Cargando curso")
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
     }
     
@@ -73,14 +73,14 @@ class CourseViewController: UIViewController, ProgressHUDContainer {
     
     // MARK: - Functions
 
-    func configureFromSegue(courseModel: CourseViewModel) {
+    func configureFromSegue(_ courseModel: CourseViewModel) {
         model = courseModel
         model?.delegate = self
     }
     
     // MARK: - Navigation
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let model = model else { return }
         model.prepareForSegue(segue, sender: sender)
     }
@@ -96,7 +96,7 @@ extension CourseViewController: CourseViewModelDelegate {
         })
     }
     
-    func loadedStudents(model: CourseViewModel) {
+    func loadedStudents(_ model: CourseViewModel) {
         // TODO: Show the students
     }
 }
@@ -108,39 +108,39 @@ extension CourseViewController: UITableViewDelegate {
 //        return 10
 //    }
     
-    func tableView(tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         // TODO: Add alpha to color
-        let color = UIColor.grayColor()
+        let color = UIColor.gray
         view.tintColor = color
     }
  
-    func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 0
     }
     
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        guard let section = TableSection(rawValue: indexPath.section) else { return 0 }
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        guard let section = TableSection(rawValue: (indexPath as NSIndexPath).section) else { return 0 }
         switch section {
-        case .CourseData:
+        case .courseData:
             return 45
-        case .CourseFolder:
+        case .courseFolder:
             return 60
         }
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        courseTable.deselectRowAtIndexPath(indexPath, animated: true)
-        guard let model = model, let section = TableSection(rawValue: indexPath.section) else { return }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        courseTable.deselectRow(at: indexPath, animated: true)
+        guard let model = model, let section = TableSection(rawValue: (indexPath as NSIndexPath).section) else { return }
         switch section {
-        case .CourseData:
-            guard let row = CourseDataRow(rawValue: indexPath.row) else { return }
+        case .courseData:
+            guard let row = CourseDataRow(rawValue: (indexPath as NSIndexPath).row) else { return }
             switch row {
-            case .Students:
+            case .students:
                 model.loadStudents()
             default:
                 break
             }
-        case .CourseFolder:
+        case .courseFolder:
             let file = model.files[indexPath.row]
             performSegueWithIdentifier(R.segue.courseViewController.showCourseFolder, sender: file)
         }
@@ -150,30 +150,30 @@ extension CourseViewController: UITableViewDelegate {
 // MARK: - UITableViewDataSource conform
 extension CourseViewController: UITableViewDataSource {
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return TableSection.numberOfSections()
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard let model = model, let section = TableSection(rawValue: section) else { return 0 }
         switch section {
-        case .CourseData:
+        case .courseData:
             return CourseDataRow.numberOfRows()
-        case .CourseFolder:
+        case .courseFolder:
             return model.files.count
         }
 //        return model.courses.count
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        guard let model = model, let section = TableSection(rawValue: indexPath.section) else { return UITableViewCell() }
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let model = model, let section = TableSection(rawValue: (indexPath as NSIndexPath).section) else { return UITableViewCell() }
         switch section {
-        case .CourseData:
-            guard let dataRow = CourseDataRow(rawValue: indexPath.row) else { return UITableViewCell() }
+        case .courseData:
+            guard let dataRow = CourseDataRow(rawValue: (indexPath as NSIndexPath).row) else { return UITableViewCell() }
             let cell = tableView.dequeueReusableCellWithIdentifier(R.reuseIdentifier.courseDataCell.identifier) as! CourseDataCell
             cell.configure(dataRow)
             return cell
-        case .CourseFolder:
+        case .courseFolder:
             let file = model.files[indexPath.row]
             let cell = tableView.dequeueReusableCellWithIdentifier(R.reuseIdentifier.courseFileCell.identifier) as! CourseDataCell
             cell.configure(file)
@@ -181,12 +181,12 @@ extension CourseViewController: UITableViewDataSource {
         }
     }
     
-    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         guard let section = TableSection(rawValue: section) else { return "" }
         switch section {
-        case .CourseData:
+        case .courseData:
             return "Información del curso"
-        case .CourseFolder:
+        case .courseFolder:
             return "Archivos del curso"
         }
     }
