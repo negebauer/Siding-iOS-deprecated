@@ -42,7 +42,7 @@ class InfoTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         barButton.isEnabled = false
-        barButton.tintColor = .clear()
+        barButton.tintColor = .clear
         // setNavigationViewColor()
         navigationItem.title = viewTitle
         setData()
@@ -62,22 +62,22 @@ class InfoTableViewController: UITableViewController {
         dataSource = DataSource(tableView: tableView, sections: [
             Section(header: "Legal", rows: [
                 Row(text: "Aplicación no oficial de la PUC"),
-                Row(text: "Política de privacidad", selection: {self.goToURL(self.policy)}, accessory: .DisclosureIndicator)
+                Row(text: "Política de privacidad", selection: {self.goToURL(self.policy)}, accessory: .disclosureIndicator)
                 ], footer: "Resumen: Tus datos son guardados en tu celular y usados en el portal"),
             
             Section(header: "Aplicación", rows: [
-                Row(text: "Sitio", detailText: "", selection: {self.showActions("Sitio", url: self.appsite)}, accessory: .DisclosureIndicator),
-                Row(text: "Facebook", detailText: "wifiuc", selection: {self.showActions("Facebook", url: self.facebook)}, accessory: .DisclosureIndicator/*, image: R.image.facebook()*/),
+                Row(text: "Sitio", detailText: "", selection: {self.showActions("Sitio", url: self.appsite)}, accessory: .disclosureIndicator),
+                Row(text: "Facebook", detailText: "wifiuc", selection: {self.showActions("Facebook", url: self.facebook)}, accessory: .disclosureIndicator/*, image: R.image.facebook()*/),
                 Row(text: "Versión", detailText: version()),
-                Row(text: "Compartir", detailText: "Pasa la voz", selection: {self.share(self.shareUrl)}, accessory: .DisclosureIndicator),
-                Row(text: "Me gusta", detailText: review(), selection: {self.reviewAction()}, accessory: .DisclosureIndicator),
+                Row(text: "Compartir", detailText: "Pasa la voz", selection: {self.share(self.shareUrl)}, accessory: .disclosureIndicator),
+                Row(text: "Me gusta", detailText: review(), selection: {self.reviewAction()}, accessory: .disclosureIndicator),
                 ], footer: "Si te sirve la aplicación no olvides dejar una reseña"),
             
             Section(header: "Autor", rows: [
                 Row(text: "Nicolás Gebauer"/*, image: R.image.negebauer()*/),
-                Row(text: "Email"/*, image: R.image.mail()*/, detailText: mail, selection: {self.sendEmail(self.mail)}, accessory: .DisclosureIndicator),
-                Row(text: "Twitter"/*, image: R.image.twitter()*/, detailText: user, selection: {self.goToURL(self.twitter)}, accessory: .DisclosureIndicator),
-                Row(text: "Telegram"/*, image: R.image.telegram()*/, detailText: user, selection: {self.goToURL(self.telegram)}, accessory: .DisclosureIndicator),
+                Row(text: "Email"/*, image: R.image.mail()*/, detailText: mail, selection: {self.sendEmail(self.mail)}, accessory: .disclosureIndicator),
+                Row(text: "Twitter"/*, image: R.image.twitter()*/, detailText: user, selection: {self.goToURL(self.twitter)}, accessory: .disclosureIndicator),
+                Row(text: "Telegram"/*, image: R.image.telegram()*/, detailText: user, selection: {self.goToURL(self.telegram)}, accessory: .disclosureIndicator),
                 //                Row(text: "Github", image: R.image.github(), detailText: user, selection: {self.goToURL(self.github)}, accessory: .DisclosureIndicator),
 //                Row(text: "Página web", detailText: pretty(site), selection: {self.showActions("Página web", url: self.site)}, accessory: .DisclosureIndicator)
                 ])

@@ -55,11 +55,11 @@ class CourseViewModel {
         })
     }
     
-    func prepareForSegue(_ segue: UIStoryboardSegue, sender: AnyObject?) {
+    func prepareForSegue(_ segue: UIStoryboardSegue, sender: Any?) {
         guard let id = segue.identifier else { return }
         switch id {
         case R.segue.courseViewController.showCourseFolder.identifier:
-            guard let file = sender as? UCSFile, let folderView = segue.destinationViewController as? CourseFolderViewController else {
+            guard let file = sender as? UCSFile, let folderView = segue.destination as? CourseFolderViewController else {
                 return
             }
             let model = CourseFolderViewModel(course: course, folder: file, session: session)

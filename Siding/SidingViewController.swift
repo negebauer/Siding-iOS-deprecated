@@ -74,7 +74,7 @@ class SidingViewController: UIViewController, ProgressHUDContainer {
     }
     
     @IBAction func nameTap(_ sender: AnyObject) {
-        performSegueWithIdentifier(R.segue.sidingViewController.showAppInfo, sender: nil)
+        performSegue(withIdentifier: R.segue.sidingViewController.showAppInfo, sender: nil)
     }
     
     // MARK: - Functions
@@ -111,7 +111,7 @@ class SidingViewController: UIViewController, ProgressHUDContainer {
             let username = alert.textFields?[0].text ?? ""
             let password = alert.textFields?[1].text ?? ""
             Settings.instance.configure(username, password: password)
-                self.login(viewAppeared, reload: reload)
+            self.login(viewAppeared, reload: reload)
             })
         alert.addTextField() {
             $0.placeholder = "Usuario sin @uc"
@@ -136,7 +136,7 @@ class SidingViewController: UIViewController, ProgressHUDContainer {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let model = model else { return }
-        model.prepareForSegue(segue, sender: sender)
+        model.prepareForSegue(segue, sender: sender as AnyObject?)
     }
     
 }
@@ -172,7 +172,7 @@ extension SidingViewController: UITableViewDelegate {
         sidingTable.deselectRow(at: indexPath, animated: true)
         guard let model = model else { return }
         let course = model.courses[(indexPath as NSIndexPath).row]
-        performSegueWithIdentifier(R.segue.sidingViewController.showCourse, sender: course)
+        performSegue(withIdentifier: R.segue.sidingViewController.showCourse, sender: course)
     }
 }
 
@@ -195,7 +195,7 @@ extension SidingViewController: UITableViewDataSource {
         guard let model = model, let section = TableSection(rawValue: (indexPath as NSIndexPath).section) else { return UITableViewCell() }
         switch section {
         case .courses:
-            let cell = tableView.dequeueReusableCellWithIdentifier(R.reuseIdentifier.courseCell.identifier) as! CourseCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.courseCell.identifier) as! CourseCell
             cell.config(model.courses[indexPath.row])
             return cell
         }

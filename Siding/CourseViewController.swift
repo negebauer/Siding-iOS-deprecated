@@ -142,7 +142,7 @@ extension CourseViewController: UITableViewDelegate {
             }
         case .courseFolder:
             let file = model.files[indexPath.row]
-            performSegueWithIdentifier(R.segue.courseViewController.showCourseFolder, sender: file)
+            performSegue(withIdentifier: R.segue.courseViewController.showCourseFolder, sender: file)
         }
     }
 }
@@ -170,12 +170,12 @@ extension CourseViewController: UITableViewDataSource {
         switch section {
         case .courseData:
             guard let dataRow = CourseDataRow(rawValue: (indexPath as NSIndexPath).row) else { return UITableViewCell() }
-            let cell = tableView.dequeueReusableCellWithIdentifier(R.reuseIdentifier.courseDataCell.identifier) as! CourseDataCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.courseDataCell.identifier) as! CourseDataCell
             cell.configure(dataRow)
             return cell
         case .courseFolder:
             let file = model.files[indexPath.row]
-            let cell = tableView.dequeueReusableCellWithIdentifier(R.reuseIdentifier.courseFileCell.identifier) as! CourseDataCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.courseFileCell.identifier) as! CourseDataCell
             cell.configure(file)
             return cell
         }

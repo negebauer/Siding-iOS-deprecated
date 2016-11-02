@@ -29,7 +29,7 @@ class Settings: NSObject {
             }
             return ""
         } set {
-            let _ = try? keychain.set(newValue ?? "", key: keyUsername)
+            let _ = try? keychain.set(newValue, key: keyUsername)
         }
     }
     
@@ -40,7 +40,7 @@ class Settings: NSObject {
             }
             return ""
         } set {
-            let _ = try? keychain.set(newValue ?? "", key: keyPassword)
+            let _ = try? keychain.set(newValue, key: keyPassword)
         }
     }
     
@@ -51,7 +51,7 @@ class Settings: NSObject {
             }
             return ""
         } set {
-            let _ = try? keychain.set(newValue ?? "", key: keyReviewVersion)
+            let _ = try? keychain.set(newValue, key: keyReviewVersion)
         }
     }
     

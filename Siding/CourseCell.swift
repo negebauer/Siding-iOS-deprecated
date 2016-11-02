@@ -25,7 +25,7 @@ class CourseCell: UITableViewCell {
     
     // MARK: - Functions
     
-    func config(withCourse: Course) {
+    func config(_ course: Course) {
         name.text = "\(course.id) \(course.name)"
         section.text = "Seccion \(course.section)"
     }

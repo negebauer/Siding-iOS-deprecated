@@ -101,7 +101,7 @@ extension CourseFolderViewController: UITableViewDelegate {
         let file = model.files[indexPath.row]
         
         if file.isFolder() {
-            guard let vc = storyboard?.instantiateViewController(R.storyboard.main.courseFolderDetail) else { return }
+            guard let vc = storyboard?.instantiateViewController(withResource: R.storyboard.main.courseFolderDetail) else { return }
             let model = CourseFolderViewModel(course: model.course, folder: file, session: model.session)
             vc.configureFromSegue(model)
             navigationController?.pushViewController(vc, animated: true)
@@ -124,7 +124,7 @@ extension CourseFolderViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let model = model else { return UITableViewCell() }
-        let cell = tableView.dequeueReusableCellWithIdentifier(R.reuseIdentifier.courseFileCell.identifier) as! CourseDataCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.courseFileCell.identifier) as! CourseDataCell
         cell.configure(model.files[indexPath.row])
         return cell
     }

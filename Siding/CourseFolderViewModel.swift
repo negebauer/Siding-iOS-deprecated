@@ -11,7 +11,7 @@ import UCSiding
 protocol CourseFolderViewModelDelegate: class {
     func loadedFiles()
     func downloadFileProgress(_ progress: Float)
-    func downloadedFile(_ fileURL: NSURL)
+    func downloadedFile(_ fileURL: URL)
 }
 
 class CourseFolderViewModel {
@@ -71,12 +71,13 @@ extension CourseFolderViewModel: UCSCourseDelegate {
 
 // MARK: - UCSFileDelegate comply
 extension CourseFolderViewModel: UCSFileDelegate {
+
     
     func downloadProgress(_ progress: Float) {
         delegate?.downloadFileProgress(progress)
     }
     
-    func downloadFinished(_ fileURL: NSURL) {
+    public func downloadFinished(_ fileURL: URL) {
         delegate?.downloadedFile(fileURL)
     }
 }

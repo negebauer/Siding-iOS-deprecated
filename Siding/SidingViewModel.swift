@@ -43,11 +43,11 @@ class SidingViewModel {
 
     func login() {
         session.login({
-            self.delegate?.loadedSiding(self, result: .Success)
+            self.delegate?.loadedSiding(self, result: .success)
             }, failure: { error in
                 let error = error != nil ? "\n\n\(error!.localizedDescription)" : ""
                 let description = "No se pudo iniciar sesión\nRevisa que ingresaste correctamente tus datos e inténtalo de nuevo\(error)"
-                self.delegate?.loadedSiding(self, result: .Error(description: description))
+                self.delegate?.loadedSiding(self, result: .error(description: description))
         })
     }
     
@@ -59,7 +59,7 @@ class SidingViewModel {
         guard let id = segue.identifier else { return }
         switch id {
         case R.segue.sidingViewController.showCourse.identifier:
-            guard let course = sender as? Course, let courseView = segue.destinationViewController as? CourseViewController else {
+            guard let course = sender as? Course, let courseView = segue.destination as? CourseViewController else {
                 return
             }
             let model = CourseViewModel(course: course, session: session)

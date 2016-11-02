@@ -66,6 +66,7 @@
 		03D2967C1D504EA30040E784 /* ActivityIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
 		03D2967E1D504F0F0040E784 /* SidingViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SidingViewModel.swift; sourceTree = "<group>"; };
 		03D296801D50506A0040E784 /* ProgressHUDContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressHUDContainer.swift; sourceTree = "<group>"; };
+		03DADFDB1DCA75A700AD0F0A /* Siding.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Siding.entitlements; sourceTree = "<group>"; };
 		03F5ED651D50493F0026D1CE /* Screenshots.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Screenshots.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		03F5ED671D50493F0026D1CE /* Screenshots.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Screenshots.swift; sourceTree = "<group>"; };
 		03F5ED691D50493F0026D1CE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -116,6 +117,7 @@
 		03844B951D5040FD00099154 /* Siding */ = {
 			isa = PBXGroup;
 			children = (
+				03DADFDB1DCA75A700AD0F0A /* Siding.entitlements */,
 				03844B961D5040FD00099154 /* AppDelegate.swift */,
 				03844B981D5040FD00099154 /* SidingViewController.swift */,
 				03D2967E1D504F0F0040E784 /* SidingViewModel.swift */,
@@ -226,6 +228,11 @@
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = BJJKE72WM4;
 						LastSwiftMigration = 0800;
+						SystemCapabilities = {
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+						};
 					};
 					03F5ED641D50493F0026D1CE = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -521,6 +528,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Siding/Siding.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 9;
 				INFOPLIST_FILE = Siding/Info.plist;
@@ -539,6 +547,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Siding/Siding.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 9;
 				INFOPLIST_FILE = Siding/Info.plist;
