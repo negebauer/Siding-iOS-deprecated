@@ -66,6 +66,13 @@ fastlane ios testflight
 Just upload to testflight
 
 May send to testers
+### ios testflightUploadNow
+```
+fastlane ios testflightUploadNow
+```
+* Call from dev branch
+
+Just do gym and upload
 ### ios store
 ```
 fastlane ios store
